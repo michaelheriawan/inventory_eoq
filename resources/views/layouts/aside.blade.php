@@ -51,7 +51,7 @@
                         <a class="nav-link" href="wizard.html">Atur EOQ</a>
                     </nav>
                 </div>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Request::is('users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                     Users
                 </a>

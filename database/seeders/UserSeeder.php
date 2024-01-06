@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pengambil;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class PengambilSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class PengambilSeeder extends Seeder
      */
     public function run()
     {
-        Pengambil::factory(5)->create();
+        User::factory(5)->create();
 
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class BarangController extends Controller
@@ -39,12 +40,19 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        Barang::create($request->validate([
+        $validated = $request->validate([
             'nama' => 'required|unique:barangs|max:255',
             'kategori' => 'required|max:255',
-            'gambar' => 'required|max:255',
+            'gambar' => 'required|image',
             'stok' => 'required|min:1',
-        ]));
+            'gambar' => 'required|image|mimes:jpeg,png,jpg',
+        ]);
+        if ($request->has('gambar')) {
+            $imagePath = $request->file('gambar')->store('barang', 'public');
+            $validated['gambar'] = $imagePath;
+
+        }
+        Barang::create($validated);
         Alert::success('Hore!', 'Barang baru berhasil ditambahkan!');
         return redirect()->back();
     }
@@ -80,13 +88,24 @@ class BarangController extends Controller
      */
     public function update(Request $request, Barang $barang)
     {
-        $barang->update($request->validate([
+
+        $validated = $request->validate([
             'nama' => 'required|max:255',
             'kategori' => 'required|max:255',
             'gambar' => 'required|max:255',
             'stok' => 'required|min:1',
-        ]));
+            'gambar' => 'image|mimes:jpeg,png,jpg',
+        ]);
 
+        if ($request->has('gambar')) {
+            $imagePath = $request->file('gambar')->store('barang', 'public');
+            $validated['gambar'] = $imagePath;
+            if (!is_null($barang->gambar)) {
+                Storage::disk('public')->delete($barang->gambar);
+            }
+        }
+
+        $barang->update($validated);
         Alert::success('Hore!', 'Barang berhasil diubah!');
         return redirect()->back();
     }

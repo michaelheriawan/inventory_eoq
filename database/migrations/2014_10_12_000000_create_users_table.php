@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('id_user')->autoIncrement();
+
+            $table->string('nama');
             $table->string('email')->unique();
             $table->string('No_Tlp');
             $table->text('alamat');

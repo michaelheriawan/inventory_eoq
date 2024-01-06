@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             BarangSeeder::class,
             SupplierSeeder::class,
             PengambilSeeder::class,
+            UserSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

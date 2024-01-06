@@ -97,7 +97,11 @@
                                         </div>
                                     @enderror
                                 </div>
-
+                                <div id='img_contain'>
+                                    <img id="image-preview"
+                                        align='middle'src="http://www.clker.com/cliparts/c/W/h/n/P/W/generic-image-file-icon-hi.png"
+                                        alt="your image" title='' />
+                                </div>
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">Tambah supplier</button>
                             </form>

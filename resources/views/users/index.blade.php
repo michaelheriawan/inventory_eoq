@@ -42,38 +42,37 @@
                                 <th>Email</th>
                                 <th>Alamat</th>
                                 <th>No.Tlp</th>
-                                <th>Usaha</th>
+                                <th>level</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID Pengambil</th>
+                                <th>ID User</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Alamat</th>
                                 <th>No.Tlp</th>
-                                <th>Usaha</th>
+                                <th>level</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($pengambils as $pengambil)
+                            @foreach ($users as $user)
                                 <tr>
-                                    <td class="id">{{ $pengambil->id_pengambil }}</td>
-                                    <td class="nama">{{ $pengambil->nama }}</td>
-                                    <td>{{ $pengambil->email }}</td>
-                                    <td>{{ $pengambil->alamat }}</td>
-                                    <td>{{ $pengambil->No_Tlp }}</td>
-                                    <td>{{ $pengambil->nama_usaha }}</td>
+                                    <td class="id">{{ $user->id_user }}</td>
+                                    <td class="nama">{{ $user->nama }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->alamat }}</td>
+                                    <td>{{ $user->No_Tlp }}</td>
+                                    <td>{{ $user->level }}</td>
                                     <td>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                            href="{{ route('pengambil.edit', ['pengambil' => $pengambil->id_pengambil]) }}"
-                                            id="myDiv"><i data-feather="edit"></i></a>
+                                            href="{{ route('users.edit', ['user' => $user->id_user]) }}" id="myDiv"><i
+                                                data-feather="edit"></i></a>
                                         {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
                                                 data-feather="trash-2"></i></a> --}}
-                                        <form
-                                            action="{{ route('pengambil.destroy', ['pengambil' => $pengambil->id_pengambil]) }}"
+                                        <form action="{{ route('users.destroy', ['user' => $user->id_user]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
                                             @csrf

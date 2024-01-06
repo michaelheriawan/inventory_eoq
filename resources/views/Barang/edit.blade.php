@@ -29,7 +29,7 @@
                     <div class="card mb-4">
                         <div class="card-header">Detail Barang</div>
                         <div class="card-body">
-                            <form method="post"
+                            <form method="post" enctype="multipart/form-data"
                                 action="{{ route('barang.update', ['barang' => $detail_barang->id_barang]) }}">
                                 @method('PUT')
                                 @csrf
@@ -62,19 +62,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <!-- Form Group (email address)-->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="inputEmailAddress">Gambar</label>
-                                    <input class="form-control {{ $errors->has('gambar') ? 'is-invalid' : '' }}"
-                                        id="inputEmailAddress" type="text" placeholder="Masukkan Gambar"
-                                        value="{{ old('gambar', $detail_barang->gambar) }}" name="gambar" />
-                                    @error('gambar')
-                                        <div id="validationServer03Feedback" class="invalid-feedback"
-                                            style="text-transform: capitalize;">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
+
                                 <div class="mb-3">
                                     <label class="small mb-1">Kategori</label>
                                     <select class="form-select {{ $errors->has('kategori') ? 'is-invalid' : '' }}"
@@ -93,6 +81,26 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputEmailAddress">Gambar</label>
+
+                                    <input class="form-control{{ $errors->has('gambar') ? ' is-invalid' : '' }}"
+                                        id="file-input" type="file" placeholder="Masukkan gambar"
+                                        value="{{ old('gambar', Str::after($detail_barang->gambar, 'barang/')) }}"
+                                        name="gambar" />
+
+                                    @error('gambar')
+                                        <div id="validationServer03Feedback" class="invalid-feedback"
+                                            style="text-transform: capitalize;">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div id='img_contain' class="mb-3">
+                                    <img id="image-preview" src="{{ asset('storage/' . $detail_barang->gambar) }}"
+                                        alt="your image" title='' />
+                                </div>
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">Edit barang</button>
                             </form>
@@ -103,3 +111,28 @@
         </div>
     </main>
 @endsection
+
+@push('scripts')
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#image-preview').attr('src', e.target.result);
+                    $('#image-preview').hide();
+                    $('#image-preview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(function() {
+            $('#image-preview').fadeIn(650);
+            $("#file-input").change(function() {
+                readURL(this);
+
+            });
+        });
+    </script>
+@endpush
