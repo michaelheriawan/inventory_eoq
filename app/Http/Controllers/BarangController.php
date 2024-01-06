@@ -102,6 +102,7 @@ class BarangController extends Controller
             $validated['gambar'] = $imagePath;
             if (!is_null($barang->gambar)) {
                 Storage::disk('public')->delete($barang->gambar);
+                //delete gambar
             }
         }
 
@@ -123,4 +124,5 @@ class BarangController extends Controller
         return redirect()->back();
 
     }
+
 }
