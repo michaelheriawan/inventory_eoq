@@ -69,12 +69,13 @@
                 <!-- Sidenav Heading (Custom)-->
                 <div class="sidenav-menu-heading">Inventory</div>
                 <!-- Sidenav Accordion (Pages)-->
-                <a class="nav-link" href="#">
-                    <div class="nav-link-icon"><i data-feather="plus-square"></i></div>
+                <a class="nav-link {{ Request::is('barang-masuk*') ? 'active' : '' }}"
+                    href="{{ route('barang-masuk.index') }}">
+                    <div class="nav-link-icon"><i data-feather="arrow-up-circle"></i></div>
                     Barang Masuk
                 </a>
                 <a class="nav-link" href="#">
-                    <div class="nav-link-icon"><i data-feather="minus-square"></i></div>
+                    <div class="nav-link-icon"><i data-feather="arrow-down-circle"></i></div>
                     Barang Keluar
                 </a>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
