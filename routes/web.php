@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PengambilController;
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Route::resource('kategori', KategoriController::class);
 Route::resource('barang', BarangController::class);
 Route::resource('barang-masuk', BarangMasukController::class);
+Route::resource('barang-keluar', BarangKeluarController::class);
 Route::resource('supplier', SupplierController::class);
 Route::resource('pengambil', PengambilController::class);
 Route::resource('users', UserController::class);

@@ -7,8 +7,8 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon icon-white"><i data-feather="arrow-up-circle"></i></div>
-                                Barang Masuk
+                                <div class="page-header-icon icon-white"><i data-feather="arrow-down-circle"></i></div>
+                                Barang Keluar
                             </h1>
                             <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
                             </div>
@@ -24,14 +24,14 @@
                                 </svg>
                                 Tambah Barang Baru
                             </button> --}}
-                            <a class="btn btn-sm btn-light text-primary shadow" href="{{ route('barang-masuk.create') }}">
+                            <a class="btn btn-sm btn-light text-primary shadow" href="{{ route('barang-keluar.create') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-plus me-1">
                                     <line x1="12" y1="5" x2="12" y2="19"></line>
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                 </svg>
-                                Tambah Barang Masuk
+                                Tambah Barang Keluar
                             </a>
                         </div>
                     </div>
@@ -48,9 +48,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nama Barang</th>
-                                <th>Tanggal Masuk</th>
+                                <th>Tanggal Keluar</th>
                                 <th>Jumlah</th>
-                                <th>Supplier</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -60,18 +59,17 @@
                                 <th>Nama Barang</th>
                                 <th>Tanggal Masuk</th>
                                 <th>Jumlah</th>
-                                <th>Supplier</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($BarangMasuks as $item)
+                            @foreach ($BarangKeluars as $item)
                                 <tr>
                                     <td class="id">{{ $item->id_barang_masuk }}</td>
                                     <td class="nama">{{ $item->barangs->nama }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->jumlah_masuk }}</td>
-                                    <td>{{ $item->suppliers->nama }}</td>
+
                                     <td>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                             href="{{ route('barang.edit', ['barang' => $item->id_barang_masuk]) }}"

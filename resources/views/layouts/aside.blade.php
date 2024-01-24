@@ -33,8 +33,8 @@
                     <div class="nav-link-icon"><i data-feather="package"></i></div>
                     Barang
                 </a> --}}
-                <a class="nav-link {{ Request::is('barang*') ? 'active' : '' }} collapsed" href="#"
-                    data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false"
+                <a class="nav-link {{ Request::is('barang*') && !Request::is('barang-masuk*') ? 'active' : '' }} collapsed"
+                    href="#" data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false"
                     aria-controls="collapseFlows">
                     <div class="nav-link-icon"><i data-feather="package"></i></div>
                     Barang
@@ -48,7 +48,7 @@
                             href="{{ route('barang.create') }}">Tambah Barang</a>
                         <a class="nav-link {{ Request::is('kategori') ? 'active' : '' }}"
                             href="{{ route('kategori.index') }}">Atur Kategori</a>
-                        <a class="nav-link" href="wizard.html">Atur EOQ</a>
+
                     </nav>
                 </div>
                 <a class="nav-link {{ Request::is('users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
@@ -74,9 +74,15 @@
                     <div class="nav-link-icon"><i data-feather="arrow-up-circle"></i></div>
                     Barang Masuk
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Request::is('barang-keluar*') ? 'active' : '' }}"
+                    href="{{ route('barang-keluar.index') }}">
                     <div class="nav-link-icon"><i data-feather="arrow-down-circle"></i></div>
                     Barang Keluar
+                </a>
+                <a class="nav-link {{ Request::is('barang-keluar*') ? 'active' : '' }}"
+                    href="{{ route('barang-keluar.index') }}">
+                    <div class="nav-link-icon"><i data-feather="arrow-down-circle"></i></div>
+                    Stock Opname
                 </a>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                     data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
