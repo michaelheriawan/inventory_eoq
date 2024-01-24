@@ -7,14 +7,14 @@
                     <div class="row align-items-center justify-content-between pt-3">
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
-                                <div class="arrow-up-circle"><i data-feather="arrow-up-circle"></i></div>
-                                Tambah Barang Masuk
+                                <div class="arrow-up-circle"><i data-feather="arrow-down-circle"></i></div>
+                                Tambah Barang Keluar
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
-                            <a class="btn btn-sm btn-light text-primary" href="{{ route('barang-masuk.index') }}">
+                            <a class="btn btn-sm btn-light text-primary" href="{{ route('barang-keluar.index') }}">
                                 <i class="me-1" data-feather="arrow-left"></i>
-                                Kembali ke daftar barang masuk
+                                Kembali ke daftar barang keluar
                             </a>
                         </div>
                     </div>
@@ -29,44 +29,24 @@
                     <div class="card mb-4">
                         <div class="card-header">Detail Barang Masuk</div>
                         <div class="card-body">
-                            <form method="post" action="{{ route('barang-masuk.store') }}">
+                            <form method="post" action="{{ route('barang-keluar.store') }}">
                                 @csrf
                                 <!-- Form Row-->
-                                <div class="row gx-3 mb-3">
-                                    <!-- Form Group (first name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1">Nama Barang</label>
-                                        <select class="form-select {{ $errors->has('barang_id') ? 'is-invalid' : '' }}"
-                                            aria-label="Default select example" name="barang_id">
-                                            <option selected disabled value="">Pilih Barang:</option>
-                                            @foreach ($barangs as $item)
-                                                <option value="{{ $item->id_barang }}">{{ $item->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('barang_id')
-                                            <div id="validationServer03Feedback" class="invalid-feedback"
-                                                style="text-transform: capitalize;">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <!-- Form Group (last name)-->
-                                    <div class="col-md-6">
-                                        <label class="small mb-1">Nama Supplier</label>
-                                        <select class="form-select {{ $errors->has('supplier_id') ? 'is-invalid' : '' }}"
-                                            aria-label="Default select example" name="supplier_id">
-                                            <option selected disabled value="">Pilih Supplier:</option>
-                                            @foreach ($suppliers as $item)
-                                                <option value="{{ $item->id_supplier }}">{{ $item->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('supplier_id')
-                                            <div id="validationServer03Feedback" class="invalid-feedback"
-                                                style="text-transform: capitalize;">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+                                <div class="mb-3">
+                                    <label class="small mb-1">Nama Barang</label>
+                                    <select class="form-select {{ $errors->has('barang_id') ? 'is-invalid' : '' }}"
+                                        aria-label="Default select example" name="barang_id">
+                                        <option selected disabled value="">Pilih Barang:</option>
+                                        @foreach ($barangs as $item)
+                                            <option value="{{ $item->id_barang }}">{{ $item->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('barang_id')
+                                        <div id="validationServer03Feedback" class="invalid-feedback"
+                                            style="text-transform: capitalize;">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label class="small mb-1">Nama Petugas</label>
@@ -86,10 +66,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputLastName">Jumlah Barang</label>
-                                    <input class="form-control {{ $errors->has('jumlah_masuk') ? 'is-invalid' : '' }}"
+                                    <input class="form-control {{ $errors->has('jumlah_keluar') ? 'is-invalid' : '' }}"
                                         id="inputLastName" type="number" placeholder="Ketik jumlah Barang"
-                                        value="{{ old('jumlah_masuk') }}" min="0" name="jumlah_masuk" />
-                                    @error('jumlah_masuk')
+                                        value="{{ old('jumlah_keluar') }}" min="0" name="jumlah_keluar" />
+                                    @error('jumlah_keluar')
                                         <div id="validationServer03Feedback" class="invalid-feedback"
                                             style="text-transform: capitalize;">
                                             {{ $message }}
