@@ -33,10 +33,10 @@
                     <div class="nav-link-icon"><i data-feather="package"></i></div>
                     Barang
                 </a> --}}
-                <a class="nav-link {{ Request::is('barang*') && !Request::is('barang-masuk*') ? 'active' : '' }} collapsed"
+                <a class="nav-link {{ Request::is('barang*') && !Request::is('barang-masuk*') && !Request::is('barang-keluar*') ? 'active' : '' }} collapsed"
                     href="#" data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false"
                     aria-controls="collapseFlows">
-                    <div class="nav-link-icon"><i data-feather="package"></i></div>
+                    <div class="nav-link-icon"><i data-feather="layers"></i></div>
                     Barang
                     <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
@@ -48,7 +48,6 @@
                             href="{{ route('barang.create') }}">Tambah Barang</a>
                         <a class="nav-link {{ Request::is('kategori') ? 'active' : '' }}"
                             href="{{ route('kategori.index') }}">Atur Kategori</a>
-
                     </nav>
                 </div>
                 <a class="nav-link {{ Request::is('users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
@@ -60,6 +59,11 @@
                     href="{{ route('supplier.index') }}">
                     <div class="nav-link-icon"><i data-feather="truck"></i></div>
                     Supplier
+                </a>
+                <a class="nav-link {{ Request::is('supplier*') ? 'active' : '' }}"
+                    href="{{ route('supplier.index') }}">
+                    <div class="nav-link-icon"><i data-feather="activity"></i></div>
+                    EOQ
                 </a>
 
                 <!-- Sidenav Heading (Custom)-->
@@ -75,14 +79,14 @@
                     <div class="nav-link-icon"><i data-feather="arrow-down-circle"></i></div>
                     Barang Keluar
                 </a>
-                <a class="nav-link {{ Request::is('barang-keluar*') ? 'active' : '' }}"
+                <a class="nav-link {{ Request::is('stock-opname*') ? 'active' : '' }}"
                     href="{{ route('barang-keluar.index') }}">
-                    <div class="nav-link-icon"><i data-feather="arrow-down-circle"></i></div>
+                    <div class="nav-link-icon"><i data-feather="package"></i></div>
                     Stock Opname
                 </a>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                     data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
-                    <div class="nav-link-icon"><i data-feather="repeat"></i></div>
+                    <div class="nav-link-icon"><i data-feather="file-text"></i></div>
                     Laporan
                     <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>

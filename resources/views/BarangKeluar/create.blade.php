@@ -27,7 +27,7 @@
                 <div class="col-xl-12">
                     <!-- Account details card-->
                     <div class="card mb-4">
-                        <div class="card-header">Detail Barang Masuk</div>
+                        <div class="card-header">Detail Barang Keluar</div>
                         <div class="card-body">
                             <form method="post" action="{{ route('barang-keluar.store') }}">
                                 @csrf

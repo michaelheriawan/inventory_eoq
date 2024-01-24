@@ -65,14 +65,14 @@
                         <tbody>
                             @foreach ($BarangKeluars as $item)
                                 <tr>
-                                    <td class="id">{{ $item->id_barang_masuk }}</td>
+                                    <td class="id">{{ $item->id_barang_keluar }}</td>
                                     <td class="nama">{{ $item->barangs->nama }}</td>
                                     <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->jumlah_masuk }}</td>
+                                    <td>{{ $item->jumlah_keluar }}</td>
 
                                     <td>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                            href="{{ route('barang.edit', ['barang' => $item->id_barang_masuk]) }}"
+                                            href="{{ route('barang.edit', ['barang' => $item->id_barang_keluar]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
                                         {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
                                                 data-feather="trash-2"></i></a> --}}

@@ -7,7 +7,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon icon-white"><i data-feather="package"></i></div>
+                                <div class="page-header-icon icon-white"><i data-feather="layers"></i></div>
                                 Barang
                             </h1>
                             <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
