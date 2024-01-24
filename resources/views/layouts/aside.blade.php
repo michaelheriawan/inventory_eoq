@@ -55,11 +55,7 @@
                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                     Users
                 </a>
-                <a class="nav-link {{ Request::is('pengambil*') ? 'active' : '' }}"
-                    href="{{ route('pengambil.index') }}">
-                    <div class="nav-link-icon"><i data-feather="clipboard"></i></div>
-                    Pengambil
-                </a>
+
                 <a class="nav-link {{ Request::is('supplier*') ? 'active' : '' }}"
                     href="{{ route('supplier.index') }}">
                     <div class="nav-link-icon"><i data-feather="truck"></i></div>

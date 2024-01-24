@@ -3,7 +3,6 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\PengambilController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +25,4 @@ Route::resource('kategori', KategoriController::class);
 Route::resource('barang', BarangController::class);
 Route::resource('barang-masuk', BarangMasukController::class);
 Route::resource('supplier', SupplierController::class);
-Route::resource('pengambil', PengambilController::class);
 Route::resource('users', UserController::class);
