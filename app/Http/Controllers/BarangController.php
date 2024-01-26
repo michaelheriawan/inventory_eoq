@@ -124,5 +124,10 @@ class BarangController extends Controller
         return redirect()->back();
 
     }
+    public function fetchData(Barang $barang)
+    {
 
+        return response()->json($barang);
+
+    }
 }

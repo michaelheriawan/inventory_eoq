@@ -80,7 +80,7 @@
                     Barang Keluar
                 </a>
                 <a class="nav-link {{ Request::is('stock-opname*') ? 'active' : '' }}"
-                    href="{{ route('barang-keluar.index') }}">
+                    href="{{ route('stock-opname.index') }}">
                     <div class="nav-link-icon"><i data-feather="package"></i></div>
                     Stock Opname
                 </a>
