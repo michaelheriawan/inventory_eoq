@@ -67,11 +67,10 @@
                                 <div class="row gx-3 mb-3">
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Sisa Stok</label>
-                                        <input class="form-control {{ $errors->has('jumlah_keluar') ? 'is-invalid' : '' }}"
-                                            id="sisa_stok" type="number" placeholder="Ketik jumlah Barang"
-                                            value="{{ old('jumlah_keluar') }}" min="0" name="jumlah_keluar"
-                                            readonly />
-                                        @error('jumlah_keluar')
+                                        <input class="form-control {{ $errors->has('sisa_stok') ? 'is-invalid' : '' }}"
+                                            id="sisa_stok" type="number" placeholder="Ketik sisa stok"
+                                            value="{{ old('sisa_stok') }}" min="0" name="sisa_stok" readonly />
+                                        @error('sisa_stok')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
                                                 style="text-transform: capitalize;">
                                                 {{ $message }}
@@ -79,11 +78,11 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="small mb-1" for="inputLastName">Jumlah Barang</label>
-                                        <input class="form-control {{ $errors->has('jumlah_keluar') ? 'is-invalid' : '' }}"
-                                            id="inputLastName" type="number" placeholder="Ketik jumlah Barang"
-                                            value="{{ old('jumlah_keluar') }}" min="0" name="jumlah_keluar" />
-                                        @error('jumlah_keluar')
+                                        <label class="small mb-1" for="inputLastName">Stok Update</label>
+                                        <input class="form-control {{ $errors->has('stok_update') ? 'is-invalid' : '' }}"
+                                            id="inputLastName" type="number" placeholder="Ketik stok update"
+                                            value="{{ old('stok_update') }}" min="0" name="stok_update" />
+                                        @error('stok_update')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
                                                 style="text-transform: capitalize;">
                                                 {{ $message }}
@@ -94,7 +93,7 @@
 
                                 <div class="mb-3">
                                     <label class="small mb-1">Keterangan</label>
-                                    <textarea class="lh-base form-control" type="text" name="keterangan" placeholder="keterangan Barang Masuk"
+                                    <textarea class="lh-base form-control" type="text" name="keterangan" placeholder="keterangan stok opname"
                                         rows="4"></textarea>
                                     @error('keterangan')
                                         <div id="validationServer03Feedback" class="invalid-feedback"
@@ -127,7 +126,6 @@
                 url = url.replace(':id', $(this).val());
                 $.get(url,
                     function(data) {
-                        console.log(data);
                         $('#sisa_stok').val(data.stok);
                     })
             });

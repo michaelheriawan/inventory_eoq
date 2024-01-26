@@ -3,6 +3,7 @@
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
+use App\Http\Controllers\EoqBarangController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\StockOpnameController;
 use App\Http\Controllers\SupplierController;
@@ -26,6 +27,7 @@ Route::get('/', function () {
 Route::get('fetch-barang/{barang}', [BarangController::class, 'fetchData'])->name('barang.fetch');
 Route::resource('kategori', KategoriController::class);
 Route::resource('barang', BarangController::class);
+Route::resource('eoq-barang', EoqBarangController::class);
 Route::resource('barang-masuk', BarangMasukController::class);
 Route::resource('barang-keluar', BarangKeluarController::class);
 Route::resource('stock-opname', StockOpnameController::class);

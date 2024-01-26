@@ -60,8 +60,8 @@
                     <div class="nav-link-icon"><i data-feather="truck"></i></div>
                     Supplier
                 </a>
-                <a class="nav-link {{ Request::is('supplier*') ? 'active' : '' }}"
-                    href="{{ route('supplier.index') }}">
+                <a class="nav-link {{ Request::is('eoq-barang*') ? 'active' : '' }}"
+                    href="{{ route('eoq-barang.index') }}">
                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                     EOQ
                 </a>

@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('stock_opnames', function (Blueprint $table) {
             $table->unsignedBigInteger('id_stock_opname')->autoIncrement();
+            $table->unsignedBigInteger('barang_id');
+            $table->unsignedBigInteger('user_id');
+
             $table->foreign('barang_id')->references('id_barang')->on('barangs');
             $table->foreign('user_id')->references('id_user')->on('users');
-            $table->unsignedBigInteger('barang_id');
+
             $table->unsignedInteger('sisa_stok');
             $table->unsignedInteger('stok_update');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }
