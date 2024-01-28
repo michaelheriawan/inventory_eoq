@@ -18,7 +18,7 @@ class BarangFactory extends Factory
     {
         return [
             'nama' => fake()->firstNameMale(),
-            'kategori' => fake()->randomDigitNotNull(),
+            'kategori' => fake()->numberBetween(1, 7),
             'stok' => fake()->randomNumber(2, true),
             'gambar' => "test",
         ];

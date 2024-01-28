@@ -98,6 +98,5 @@ class KategoriController extends Controller
         $kategori->delete();
         Alert::success('Hore!', 'Kategori berhasil dihapus!');
         return redirect()->back();
-
     }
 }

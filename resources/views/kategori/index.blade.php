@@ -123,9 +123,9 @@
                     <h5 class="modal-title" id="editGroupModalLabel">Edit Kategori</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="kategori" class="editForm">
-                    @method('PUT')
+                <form method="POST" action="" class="editForm">
                     @csrf
+                    @method('PUT')
                     <div class="modal-body">
 
                         <div class="mb-0">
@@ -157,11 +157,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).on('click', "#myDiv", function() {
-            var trid = $(this).closest('tr').find('.nama').text();
-            $(".editInput").val(trid);
-            var action = $('.editForm').attr('action');
+            var tr_nama = $(this).closest('tr').find('.nama').text();
+            var tr_id = $(this).closest('tr').find('.id').text();
+            $(".editInput").val(tr_nama);
+            let url = "{{ route('kategori.update', ['kategori' => ':id']) }}";
+            url = url.replace(':id', tr_id);
+            $('.editForm').attr('action', url);
 
-            $('.editForm').attr('action', action + "/" + id);
         });
     </script>
 
