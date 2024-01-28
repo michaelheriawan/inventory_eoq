@@ -43,7 +43,7 @@ class EoqBarangController extends Controller
             'biaya_simpan' => 'required|min:1',
             'eoq' => 'required|min:1',
         ]));
-        Alert::success('Hore!', 'Eoq  berhasil ditambahkan!');
+        Alert::success('Hore!', 'Eoq berhasil ditambahkan!');
         return redirect()->back();
     }
 }

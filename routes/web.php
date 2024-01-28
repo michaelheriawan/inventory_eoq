@@ -5,6 +5,7 @@ use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\EoqBarangController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StockOpnameController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UserController;
@@ -25,6 +26,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('fetch-barang/{barang}', [BarangController::class, 'fetchData'])->name('barang.fetch');
+Route::get('login', [LoginController::class, 'index'])->name('login.index');
+Route::post('login/auth', [LoginController::class, 'authenticate'])->name('login.auth');
+
 Route::resource('kategori', KategoriController::class);
 Route::resource('barang', BarangController::class);
 Route::resource('eoq-barang', EoqBarangController::class);
