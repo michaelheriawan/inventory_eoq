@@ -29,7 +29,7 @@
                     <div class="card mb-4">
                         <div class="card-header">Detail EOQ Barang</div>
                         <div class="card-body">
-                            <form method="post" action="{{ route('stock-opname.store') }}">
+                            <form method="post" action="{{ route('eoq-barang.store') }}">
                                 @csrf
                                 <!-- Form Row-->
                                 <div class="mb-3">
@@ -52,7 +52,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Bulan</label>
                                         <input class="form-control {{ $errors->has('bulan') ? 'is-invalid' : '' }}"
-                                            id="bulan" type="number" placeholder="Ketik bulan"
+                                            id="bulan" type="text" placeholder="Ketik bulan"
                                             value="{{ old('bulan') }}" min="0" name="bulan" />
                                         @error('bulan')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
@@ -65,7 +65,7 @@
                                         <label class="small mb-1" for="inputLastName">Permintaan</label>
                                         <input
                                             class="form-control {{ $errors->has('jumlah_permintaan') ? 'is-invalid' : '' }}"
-                                            id="inputLastName" type="number" placeholder="Ketik jumlah permintaan"
+                                            id="permintaan" type="number" placeholder="Ketik jumlah permintaan"
                                             value="{{ old('jumlah_permintaan') }}" min="0"
                                             name="jumlah_permintaan" />
                                         @error('jumlah_permintaan')
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Persentase Biaya Pesan</label>
-                                        <input class="form-control" id="inputLastName" type="number"
+                                        <input class="form-control" id="persentase" type="number"
                                             placeholder="Ketik persentase" min="0" />
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Biaya Simpan</label>
                                         <input class="form-control {{ $errors->has('biaya_simpan') ? 'is-invalid' : '' }}"
-                                            id="inputLastName" type="number" placeholder="Ketik biaya simpan"
+                                            id="biaya_simpan" type="number" placeholder="Ketik biaya simpan"
                                             value="{{ old('biaya_simpan') }}" min="0" name="biaya_simpan" />
                                         @error('biaya_simpan')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
@@ -124,7 +124,7 @@
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputLastName">EOQ</label>
                                     <input class="form-control {{ $errors->has('eoq') ? 'is-invalid' : '' }}"
-                                        id="inputLastName" type="number" value="{{ old('eoq') }}" min="0"
+                                        id="eoq" type="number" value="{{ old('eoq') }}" min="0"
                                         name="eoq" readonly />
                                     @error('eoq')
                                         <div id="validationServer03Feedback" class="invalid-feedback"
@@ -152,14 +152,33 @@
     <script>
         // Shorthand for $( document ).ready()
         $(function() {
-            $('#mySelect').change(function() {
+            const hitung_ulang = function() {
+                let biaya_simpan = $("#biaya_simpan").val();
+                let permintaan = $("#permintaan").val();
+                let biaya_pesan = $("#biaya_pesan").val();
+                if (biaya_pesan != "" && permintaan != "" && biaya_simpan != "") {
+                    $("#eoq").val(hitung_eoq(permintaan, biaya_pesan, biaya_simpan));
+                }
 
-                var url = "{{ route('barang.fetch', ['barang' => ':id']) }}";
-                url = url.replace(':id', $(this).val());
-                $.get(url,
-                    function(data) {
-                        $('#sisa_stok').val(data.stok);
-                    })
+            }
+            const hitung_eoq = function(permintaan, biaya_pesan, biaya_simpan) {
+                return Math.round(Math.sqrt((2 * biaya_pesan * permintaan) / biaya_simpan));
+            }
+            $("#persentase").on("input", function() {
+                let persentase = $(this).val();
+                let biaya_pesan = ($("#harga_barang").val() * persentase) / 100;
+                $("#biaya_pesan").val(biaya_pesan);
+                hitung_ulang();
+            });
+
+            $("#permintaan").on("input", function() {
+                hitung_ulang();
+            });
+            $("#harga_barang").on("input", function() {
+                hitung_ulang();
+            });
+            $("#biaya_simpan").on("input", function() {
+                hitung_ulang();
             });
         });
     </script>
