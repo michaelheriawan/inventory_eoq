@@ -96,11 +96,15 @@
                                         </div>
                                     @enderror
                                 </div>
-
-                                <div id='img_contain' class="mb-3">
-                                    <img id="image-preview" src="{{ asset('storage/' . $detail_barang->gambar) }}"
-                                        alt="your image" title='' />
+                                <div class="img_container mb-3">
+                                    <div id='img_contain'>
+                                        <img id="image-preview" src="{{ asset('storage/' . $detail_barang->gambar) }}"
+                                            alt="your image" title='' />
+                                        <a href="#" class="close-thik"></a>
+                                    </div>
                                 </div>
+
+
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">Edit barang</button>
                             </form>
@@ -120,18 +124,34 @@
                 reader.onload = function(e) {
                     $('#image-preview').attr('src', e.target.result);
                     $('#image-preview').hide();
+                    $('.close-thik').show();
+                    $('.img_container').show();
                     $('#image-preview').fadeIn(650);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
+        function hideImage() {
+            $('.img_container').hide();
+            $('.close-thik').hide();
+        }
 
         $(function() {
-            $('#image-preview').fadeIn(650);
+            hideImage();
+            let gambar = {!! json_encode($detail_barang->gambar) !!};
+            if (gambar) {
+                $('.close-thik').show();
+                $('.img_container').show();
+                $('#image-preview').fadeIn(650);
+            }
             $("#file-input").change(function() {
                 readURL(this);
+            });
 
+            $('.close-thik').on('click', function() {
+                $('#file-input').val('');
+                hideImage();
             });
         });
     </script>

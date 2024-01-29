@@ -24,6 +24,7 @@
         "yajra/laravel-datatables-oracle": "10.3.1"
     },
     "require-dev": {
+        "bfinlay/laravel-excel-seeder": "^3.3",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/actions": "^1.2",
         "laravel-lang/attributes": "^2.7",

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use bfinlay\SpreadsheetSeeder\SpreadsheetSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             KategoriSeeder::class,
-            BarangSeeder::class,
+            SpreadsheetSeeder::class,
             SupplierSeeder::class,
             UserSeeder::class,
         ]);

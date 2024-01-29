@@ -16,7 +16,7 @@
             crossorigin="anonymous"></script>
         <script src="https://unpkg.com/feather-icons"></script>
         <link href={{ asset('css/custom.css') }} rel="stylesheet" />
-        @vite('')
+        @vite([])
     </head>
 
     <body class="nav-fixed">

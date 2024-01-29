@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('kategori')->references('id_kategori')->on('kategoris');
             $table->string('nama');
             $table->unsignedInteger('stok');
-            $table->text('gambar');
+            $table->text('gambar')->nullable();
             $table->timestamps();
         });
     }

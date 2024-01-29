@@ -50,8 +50,6 @@
                                 <th>Nama Barang</th>
                                 <th>Kategori</th>
                                 <th>Stok</th>
-                                <th>Tanggal dibuat</th>
-                                <th>Terakhir diubah</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -61,8 +59,6 @@
                                 <th>Nama Barang</th>
                                 <th>Kategori</th>
                                 <th>Stok</th>
-                                <th>Tanggal dibuat</th>
-                                <th>Terakhir diubah</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
@@ -73,14 +69,18 @@
                                     <td class="nama">{{ $barang->nama }}</td>
                                     <td>{{ $barang->kategoris->nama }}</td>
                                     <td>{{ $barang->stok }}</td>
-                                    <td>{{ $barang->created_at }}</td>
-                                    <td>{{ $barang->updated_at }}</td>
                                     <td>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1"
                                             href="{{ route('barang.edit', ['barang' => $barang->id_barang]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
                                         {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
                                                 data-feather="trash-2"></i></a> --}}
+                                        {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">Launch Demo
+                                            Modal</button> --}}
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1" href="#"
+                                            id="myDiv" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                data-feather="eye"></i></a>
                                         <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
@@ -95,6 +95,23 @@
 
 
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Barang</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer"><button class="btn btn-secondary" type="button"
+                            data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save
+                            changes</button></div>
                 </div>
             </div>
         </div>
