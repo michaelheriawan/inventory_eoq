@@ -17,10 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_stock_opname')->autoIncrement();
             $table->unsignedBigInteger('barang_id');
             $table->unsignedBigInteger('user_id');
-
             $table->foreign('barang_id')->references('id_barang')->on('barang');
             $table->foreign('user_id')->references('id_user')->on('user');
-
             $table->unsignedInteger('sisa_stok');
             $table->unsignedInteger('stok_update');
             $table->text('keterangan')->nullable();

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_supplier')->autoIncrement();
             $table->string('nama');
             $table->string('email');
-            $table->string('No_Tlp');
+            $table->string('no_tlp');
             $table->text('alamat');
             $table->text('nama_usaha');
             $table->timestamps();

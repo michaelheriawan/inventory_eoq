@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('nama');
             $table->string('email')->unique();
-            $table->string('No_Tlp');
+            $table->string('no_tlp');
             $table->text('alamat');
             $table->string('password');
             $table->string('level');
