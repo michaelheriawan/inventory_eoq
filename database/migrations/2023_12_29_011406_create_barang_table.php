@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('barangs', function (Blueprint $table) {
+        Schema::create('barang', function (Blueprint $table) {
             $table->unsignedBigInteger('id_barang')->autoIncrement();
             $table->unsignedBigInteger('kategori');
-            $table->foreign('kategori')->references('id_kategori')->on('kategoris');
+            $table->foreign('kategori')->references('id_kategori')->on('kategori');
             $table->string('nama');
             $table->unsignedInteger('stok');
             $table->text('gambar')->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barangs');
+        Schema::dropIfExists('barang');
     }
 };

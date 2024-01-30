@@ -11,7 +11,7 @@ class Kategori extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $table = 'kategori';
     protected $primaryKey = 'id_kategori';
     protected $fillable = ['nama'];
 

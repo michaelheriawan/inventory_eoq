@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class EoqBarang extends Model
 {
     use HasFactory;
+    protected $table = 'eoq_barang';
     protected $primaryKey = 'id_eoq_barang';
     protected $fillable = ['bulan', 'barang_id', 'jumlah_permintaan', 'harga_barang', 'biaya_pesan', 'biaya_simpan', 'eoq'];
     public function barangs(): BelongsTo

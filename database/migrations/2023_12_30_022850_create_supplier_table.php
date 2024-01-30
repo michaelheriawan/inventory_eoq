@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kategoris', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_kategori')->autoIncrement();
+        Schema::create('supplier', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_supplier')->autoIncrement();
             $table->string('nama');
-            $table->softDeletes();
+            $table->string('email');
+            $table->string('No_Tlp');
+            $table->text('alamat');
+            $table->text('nama_usaha');
             $table->timestamps();
         });
     }
@@ -28,10 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('kategoris', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
-
-        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('supplier');
     }
 };

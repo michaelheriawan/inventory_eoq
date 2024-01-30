@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stock_opnames', function (Blueprint $table) {
+        Schema::create('stock_opname', function (Blueprint $table) {
             $table->unsignedBigInteger('id_stock_opname')->autoIncrement();
             $table->unsignedBigInteger('barang_id');
             $table->unsignedBigInteger('user_id');
 
-            $table->foreign('barang_id')->references('id_barang')->on('barangs');
-            $table->foreign('user_id')->references('id_user')->on('users');
+            $table->foreign('barang_id')->references('id_barang')->on('barang');
+            $table->foreign('user_id')->references('id_user')->on('user');
 
             $table->unsignedInteger('sisa_stok');
             $table->unsignedInteger('stok_update');
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_opnames');
+        Schema::dropIfExists('stock_opname');
     }
 };

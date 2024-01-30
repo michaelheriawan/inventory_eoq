@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class StockOpname extends Model
 {
     use HasFactory;
+    protected $table = 'stock_opname';
     protected $primaryKey = 'id_stock_opname';
     protected $fillable = ['user_id', 'barang_id', 'sisa_stok', 'stok_update', 'keterangan'];
     public function barangs(): BelongsTo

@@ -14,25 +14,25 @@ class KategoriSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('kategoris')->insert([
+        DB::table('kategori')->insert([
             'nama' => 'Kulkas - 1 Pintu',
         ]);
-        DB::table('kategoris')->insert([
+        DB::table('kategori')->insert([
             'nama' => 'Kulkas - 2 Pintu',
         ]);
-        DB::table('kategoris')->insert([
+        DB::table('kategori')->insert([
             'nama' => 'Showcase',
         ]);
-        DB::table('kategoris')->insert([
+        DB::table('kategori')->insert([
             'nama' => 'Dispenser',
         ]);
-        DB::table('kategoris')->insert([
+        DB::table('kategori')->insert([
             'nama' => 'Rice Cooker',
         ]);
-        DB::table('kategoris')->insert([
+        DB::table('kategori')->insert([
             'nama' => 'Speaker Multimedia',
         ]);
-        DB::table('kategoris')->insert([
+        DB::table('kategori')->insert([
             'nama' => 'Mesin Suci',
         ]);
 

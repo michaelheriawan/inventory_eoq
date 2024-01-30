@@ -78,8 +78,8 @@
                                         {{-- <button class="btn btn-primary" type="button" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">Launch Demo
                                             Modal</button> --}}
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1" href="#"
-                                            id="myDiv" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                 data-feather="eye"></i></a>
                                         <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang]) }}"
                                             method="post" class="d-inline">
@@ -108,10 +108,38 @@
                         <h5 class="modal-title" id="exampleModalLabel">Detail Barang</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">...</div>
-                    <div class="modal-footer"><button class="btn btn-secondary" type="button"
-                            data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save
-                            changes</button></div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center">
+                            <img src="" alt="" height="150" class="d_gambar">
+                        </div>
+
+                        <table class="table table-striped-columns mt-1">
+                            <tr>
+                                <td width="50%">Kategori</td>
+                                <td id="d_kategori"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Nama Barang</td>
+                                <td id="d_nama"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Stok</td>
+                                <td id="d_stok"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal dibuat</td>
+                                <td id="d_created"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal diubah</td>
+                                <td id="d_updated"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -120,7 +148,8 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="{{ asset('ui/js/moment.js') }}"></script>
+    <script src="{{ asset('ui/js/moment-with-locales.js') }}"></script>
     <script>
         $(document).on('click', ".delete", function(event) {
             event.preventDefault();
@@ -141,6 +170,30 @@
                 }
             });
 
+        });
+
+        $(function() {
+            $('.detail_data').click(function() {
+                var tr_id = $(this).closest('tr').find('.id').text();
+                var url = "{{ route('barang.show', ['barang' => ':id']) }}";
+                url = url.replace(':id', tr_id);
+                let src_gambar = "{{ asset('storage/' . ':gambar') }}"
+                moment.locale('id');
+                $.get(url,
+                    function(data) {
+                        src_gambar = src_gambar.replace(':gambar', data.gambar);
+                        $('.d_gambar').attr('src', src_gambar);
+                        $('#d_kategori').text(data.kategoris.nama);
+                        $('#d_nama').text(data.nama);
+                        $('#d_stok').text(data.stok);
+
+                        // $('#d_created').text(data.created_at.split('T')[0]);
+                        $('#d_created').text(moment(data.created_at).format('L'));
+                        $('#d_created').text(moment(data.updated_at).format('L'));
+
+
+                    })
+            });
         });
     </script>
 @endpush
