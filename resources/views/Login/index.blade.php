@@ -29,7 +29,7 @@
                                 <!-- Basic login form-->
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header justify-content-center">
-                                        <h3 class="fw-light my-4">Login</h3>
+                                        <h3 class="fw-light my-4">Toko Indrawan Elektronik</h3>
                                     </div>
                                     <div class="card-body">
                                         <!-- Login form-->
@@ -71,7 +71,7 @@
                     </div>
                 </main>
             </div>
-            <div id="layoutAuthentication_footer">
+            {{-- <div id="layoutAuthentication_footer">
                 <footer class="footer-admin mt-auto footer-dark">
                     <div class="container-xl px-4">
                         <div class="row">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                 </footer>
-            </div>
+            </div> --}}
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="

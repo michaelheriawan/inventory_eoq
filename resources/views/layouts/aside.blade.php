@@ -22,7 +22,7 @@
                 </a> --}}
                 <!-- Sidenav Menu Heading (Core)-->
                 <div style="padding-top: 1.7rem;"></div>
-                <a class="nav-link" href="#">
+                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
                     <div class="nav-link-icon"><i data-feather="home"></i></div>
                     Home
                 </a>
@@ -84,7 +84,7 @@
                     <div class="nav-link-icon"><i data-feather="package"></i></div>
                     Stock Opname
                 </a>
-                <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
+                {{-- <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
                     data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
                     <div class="nav-link-icon"><i data-feather="file-text"></i></div>
                     Laporan
@@ -96,7 +96,7 @@
                         <a class="nav-link" href="wizard.html">Barang Keluar</a>
                         <a class="nav-link" href="wizard.html">EOQ Barang</a>
                     </nav>
-                </div>
+                </div> --}}
 
 
             </div>
@@ -105,7 +105,7 @@
         <div class="sidenav-footer">
             <div class="sidenav-footer-content">
                 <div class="sidenav-footer-subtitle">Logged in as:</div>
-                <div class="sidenav-footer-title">Valerie Luna</div>
+                <div class="sidenav-footer-title">Michael</div>
             </div>
         </div>
     </nav>

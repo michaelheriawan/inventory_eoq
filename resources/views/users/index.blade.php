@@ -10,8 +10,8 @@
                                 <div class="page-header-icon icon-white"><i data-feather="users"></i></div>
                                 Users
                             </h1>
-                            <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
-                            </div>
+                            {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
+                            </div> --}}
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
 

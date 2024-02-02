@@ -77,8 +77,12 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label class="small mb-1" for="inputEmailAddress">Gambar</label>
-
+                                    <label class="small mb-1" style="display: block;" for="inputEmailAddress">Gambar</label>
+                                    <div class="img_container mb-3">
+                                        <div id='img_contain'>
+                                            <img id="image-preview" src="" alt="your image" />
+                                        </div>
+                                    </div>
                                     <input class="form-control{{ $errors->has('gambar') ? ' is-invalid' : '' }}"
                                         id="file-input" type="file" placeholder="Masukkan gambar"
                                         value="{{ old('gambar') }}" name="gambar" />
@@ -90,11 +94,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div id='img_contain' class="mb-3">
-                                    <img id="image-preview"
-                                        src="http://www.clker.com/cliparts/c/W/h/n/P/W/generic-image-file-icon-hi.png"
-                                        alt="your image" title='' />
-                                </div>
+
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">Tambah barang</button>
                             </form>
@@ -114,17 +114,28 @@
                 reader.onload = function(e) {
                     $('#image-preview').attr('src', e.target.result);
                     $('#image-preview').hide();
+                    $('.close-thik').show();
+                    $('.img_container').show();
                     $('#image-preview').fadeIn(650);
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
+        function hideImage() {
+            $('.img_container').hide();
+            $('.close-thik').hide();
+        }
 
         $(function() {
+            hideImage();
             $("#file-input").change(function() {
                 $('#image-preview').hide();
                 readURL(this);
+            });
+            $('.close-thik').on('click', function() {
+                $('#file-input').val('');
+                hideImage();
             });
         });
     </script>
