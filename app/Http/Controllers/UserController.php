@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
@@ -27,7 +28,6 @@ class UserController extends Controller
     public function create()
     {
         return view('users.create');
-
     }
 
     /**
@@ -38,14 +38,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->validate([
-            'nama' => 'required|unique:users|max:255',
-            'kategori' => 'required|max:255',
-            'gambar' => 'required|max:255',
-            'stok' => 'required|min:1',
-        ]));
+        $validated = $request->validate([
+            'nama' => 'required|max:255',
+            'email' => 'required|unique:user|max:255',
+            'no_tlp' => 'required|max:255',
+            'alamat' => 'required',
+            'password' => 'required',
+            'level' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg',
+        ]);
+        if ($request->has('gambar')) {
+            $imagePath = $request->file('gambar')->store('user', 'public');
+            $validated['gambar'] = $imagePath;
+
+        }
+        User::create($validated);
         Alert::success('Hore!', 'User baru berhasil ditambahkan!');
         return redirect()->back();
+
     }
 
     /**
@@ -79,15 +89,29 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->validate([
+        $validated = $request->validate([
             'nama' => 'required|max:255',
-            'kategori' => 'required|max:255',
-            'gambar' => 'required|max:255',
-            'stok' => 'required|min:1',
-        ]));
+            'email' => 'required|max:255',
+            'no_tlp' => 'required|max:255',
+            'alamat' => 'required',
+            'password' => 'required',
+            'level' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg',
+        ]);
 
+        if ($request->has('gambar')) {
+            $imagePath = $request->file('gambar')->store('user', 'public');
+            $validated['gambar'] = $imagePath;
+            if (!is_null($user->gambar)) {
+                Storage::disk('public')->delete($user->gambar);
+                //delete gambar
+            }
+        }
+
+        $user->update($validated);
         Alert::success('Hore!', 'User berhasil diubah!');
         return redirect()->back();
+
     }
 
     /**

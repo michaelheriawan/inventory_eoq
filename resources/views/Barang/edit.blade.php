@@ -83,7 +83,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputEmailAddress">Gambar</label>
-
+                                    <div class="img_container mb-3">
+                                        <div id='img_contain'>
+                                            <img id="image-preview" src="{{ asset('storage/' . $detail_barang->gambar) }}"
+                                                alt="your image" />
+                                            <a href="#" class="close-thik"></a>
+                                        </div>
+                                    </div>
                                     <input class="form-control{{ $errors->has('gambar') ? ' is-invalid' : '' }}"
                                         id="file-input" type="file" placeholder="Masukkan gambar"
                                         value="{{ old('gambar', Str::after($detail_barang->gambar, 'barang/')) }}"
@@ -96,13 +102,13 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="img_container mb-3">
+                                {{-- <div class="img_container mb-3">
                                     <div id='img_contain'>
                                         <img id="image-preview" src="{{ asset('storage/' . $detail_barang->gambar) }}"
                                             alt="your image" title='' />
                                         <a href="#" class="close-thik"></a>
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <!-- Submit button-->

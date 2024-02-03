@@ -64,7 +64,7 @@
                                     <td class="nama">{{ $user->nama }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->alamat }}</td>
-                                    <td>{{ $user->No_Tlp }}</td>
+                                    <td>{{ $user->no_tlp }}</td>
                                     <td>{{ $user->level }}</td>
                                     <td>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"

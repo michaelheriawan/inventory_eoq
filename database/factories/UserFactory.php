@@ -21,11 +21,11 @@ class UserFactory extends Factory
         return [
             'nama' => fake()->firstNameMale(),
             'email' => fake()->email(),
-            'No_Tlp' => fake()->e164PhoneNumber(),
+            'no_tlp' => fake()->e164PhoneNumber(),
             'alamat' => fake()->streetAddress(),
             'password' => Hash::make("test"),
             'level' => "admin",
-            'image' => "test",
+            'gambar' => "test",
         ];
     }
 

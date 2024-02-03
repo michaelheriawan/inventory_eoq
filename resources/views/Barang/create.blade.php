@@ -81,6 +81,7 @@
                                     <div class="img_container mb-3">
                                         <div id='img_contain'>
                                             <img id="image-preview" src="" alt="your image" />
+                                            <a href="#" class="close-thik"></a>
                                         </div>
                                     </div>
                                     <input class="form-control{{ $errors->has('gambar') ? ' is-invalid' : '' }}"
