@@ -117,9 +117,6 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('ui/js/moment.js') }}"></script>
-    <script src="{{ asset('ui/js/moment-with-locales.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             moment.locale('id');

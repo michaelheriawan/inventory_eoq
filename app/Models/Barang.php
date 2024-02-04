@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Barang extends Model
 {
@@ -15,5 +16,11 @@ class Barang extends Model
     public function kategoris(): BelongsTo
     {
         return $this->belongsTo(kategori::class, 'kategori', 'id_kategori')->withTrashed();
+    }
+
+    public function barang_masuks(): HasMany
+    {
+        return $this->belongsTo(BarangMasuk::class, 'barang_id', 'id_barang')->withTrashed();
+
     }
 }

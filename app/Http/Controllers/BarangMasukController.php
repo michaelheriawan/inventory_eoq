@@ -33,6 +33,19 @@ class BarangMasukController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return response()->json(BarangMasuk::join('barang', 'barang.id_barang', '=', 'barang_id')
+                ->join('kategori', 'kategori.id_kategori', '=', 'barang.kategori')
+                ->where('barang_masuk.id_barang_masuk', $id)
+                ->get(['barang_masuk.*', 'kategori.nama as kategori', 'barang.gambar', 'barang.nama as barang'])->first());
+    }
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
