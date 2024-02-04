@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\BarangKeluar;
 use Illuminate\Database\Seeder;
 
 class BarangKeluarSeeder extends Seeder
@@ -14,6 +14,6 @@ class BarangKeluarSeeder extends Seeder
      */
     public function run()
     {
-        //
+        BarangKeluar::factory(20)->create();
     }
 }

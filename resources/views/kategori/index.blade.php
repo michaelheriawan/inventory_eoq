@@ -10,10 +10,10 @@
                                 <div class="page-header-icon icon-white"><i data-feather="tag"></i></div>
                                 Kategori
                             </h1>
-                            <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
-                            </div>
+                            {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
+                            </div> --}}
                         </div>
-                        <div class="col-12 col-xl-auto mb-3">
+                        <div class="col-12 col-xl-auto mt-4">
                             <button class="btn btn-sm btn-light text-primary shadow" type="button" data-bs-toggle="modal"
                                 data-bs-target="#createGroupModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -26,6 +26,12 @@
                             </button>
                         </div>
                     </div>
+                    <nav class="mt-4 rounded" aria-label="breadcrumb">
+                        <ol class="breadcrumb px-3 py-2 rounded mb-0">
+                            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Daftar Kategori</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </header>

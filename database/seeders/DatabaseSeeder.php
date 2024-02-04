@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             SpreadsheetSeeder::class,
             SupplierSeeder::class,
             UserSeeder::class,
+            BarangMasukSeeder::class,
+            BarangKeluarSeeder::class,
         ]);
 
         // \App\Models\User::factory(10)->create();

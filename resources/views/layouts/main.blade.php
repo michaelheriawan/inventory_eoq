@@ -25,7 +25,7 @@
             @include('layouts.aside')
             <div id="layoutSidenav_content">
                 @yield('contents')
-                {{-- <footer class="footer-admin mt-auto footer-light">
+                <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
                         <div class="row">
                             <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                </footer> --}}
+                </footer>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"

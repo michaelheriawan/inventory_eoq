@@ -10,10 +10,10 @@
                                 <div class="page-header-icon icon-white"><i data-feather="package"></i></div>
                                 Stock Opname
                             </h1>
-                            <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
-                            </div>
+                            {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
+                            </div> --}}
                         </div>
-                        <div class="col-12 col-xl-auto mb-3">
+                        <div class="col-12 col-xl-auto mt-4">
                             {{-- <button class="btn btn-sm btn-light text-primary shadow" type="button" data-bs-toggle="modal"
                                 data-bs-target="#createGroupModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

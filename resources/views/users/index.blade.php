@@ -13,8 +13,7 @@
                             {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
                             </div> --}}
                         </div>
-                        <div class="col-12 col-xl-auto mb-3">
-
+                        <div class="col-12 col-xl-auto mt-4">
                             <a class="btn btn-sm btn-light text-primary shadow" href="{{ route('users.create') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -26,6 +25,12 @@
                             </a>
                         </div>
                     </div>
+                    <nav class="mt-4 rounded" aria-label="breadcrumb">
+                        <ol class="breadcrumb px-3 py-2 rounded mb-0">
+                            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Daftar User</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </header>
@@ -67,11 +72,14 @@
                                     <td>{{ $user->no_tlp }}</td>
                                     <td>{{ $user->level }}</td>
                                     <td>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1"
                                             href="{{ route('users.edit', ['user' => $user->id_user]) }}" id="myDiv"><i
                                                 data-feather="edit"></i></a>
                                         {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
                                                 data-feather="trash-2"></i></a> --}}
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                data-feather="eye"></i></a>
                                         <form action="{{ route('users.destroy', ['user' => $user->id_user]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')

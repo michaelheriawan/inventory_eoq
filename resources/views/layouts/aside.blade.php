@@ -84,19 +84,20 @@
                     <div class="nav-link-icon"><i data-feather="package"></i></div>
                     Stock Opname
                 </a>
-                {{-- <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse"
-                    data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
+                <a class="nav-link collapsed {{ Request::is('laporan*') ? 'active' : '' }}" href="javascript:void(0);"
+                    data-bs-toggle="collapse" data-bs-target="#collapseFlows2" aria-expanded="false"
+                    aria-controls="collapseFlows">
                     <div class="nav-link-icon"><i data-feather="file-text"></i></div>
                     Laporan
                     <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
+                <div class="collapse" id="collapseFlows2" data-bs-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav">
-                        <a class="nav-link" href="multi-tenant-select.html">Barang Masuk</a>
-                        <a class="nav-link" href="wizard.html">Barang Keluar</a>
-                        <a class="nav-link" href="wizard.html">EOQ Barang</a>
+                        <a class="nav-link" href="{{ route('laporan_barang_masuk.index') }}">Barang Masuk</a>
+                        <a class="nav-link" href="{{ route('laporan_barang_keluar.index') }}">Barang Keluar</a>
+                        <a class="nav-link" href="{{ route('barang-keluar.index') }}">EOQ Barang</a>
                     </nav>
-                </div> --}}
+                </div>
 
 
             </div>

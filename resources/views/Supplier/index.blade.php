@@ -10,10 +10,10 @@
                                 <div class="page-header-icon icon-white"><i data-feather="truck"></i></div>
                                 Supplier
                             </h1>
-                            <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
-                            </div>
+                            {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
+                            </div> --}}
                         </div>
-                        <div class="col-12 col-xl-auto mb-3">
+                        <div class="col-12 col-xl-auto mt-4">
                             {{-- <button class="btn btn-sm btn-light text-primary shadow" type="button" data-bs-toggle="modal"
                                 data-bs-target="#createGroupModal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -35,6 +35,12 @@
                             </a>
                         </div>
                     </div>
+                    <nav class="mt-4 rounded" aria-label="breadcrumb">
+                        <ol class="breadcrumb px-3 py-2 rounded mb-0">
+                            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Daftar Supplier</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </header>
@@ -46,7 +52,7 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>ID Supplier</th>
+                                <th>ID</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Alamat</th>
@@ -57,7 +63,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID Supplier</th>
+                                <th>ID</th>
                                 <th>Nama</th>
                                 <th>Email</th>
                                 <th>Alamat</th>
@@ -73,7 +79,7 @@
                                     <td class="nama">{{ $supplier->nama }}</td>
                                     <td>{{ $supplier->email }}</td>
                                     <td>{{ $supplier->alamat }}</td>
-                                    <td>{{ $supplier->No_Tlp }}</td>
+                                    <td>{{ $supplier->no_tlp }}</td>
                                     <td>{{ $supplier->nama_usaha }}</td>
                                     <td>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"

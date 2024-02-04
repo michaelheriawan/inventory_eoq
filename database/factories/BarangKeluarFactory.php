@@ -17,7 +17,10 @@ class BarangKeluarFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => fake()->numberBetween(1, 5),
+            'barang_id' => fake()->numberBetween(1, 8),
+            'jumlah_keluar' => fake()->randomNumber(2, true),
         ];
+
     }
 }
