@@ -52,6 +52,9 @@
         <script>
             feather.replace();
         </script>
+        <link href="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.css"
+            rel="stylesheet">
+        <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.js"></script>
         @stack('scripts')
         @include('sweetalert::alert')
     </body>

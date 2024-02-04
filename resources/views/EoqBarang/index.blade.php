@@ -49,7 +49,7 @@
         <div class="container-xl px-4">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="myTable" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -133,6 +133,10 @@
                 }
             });
 
+        });
+        // Shorthand for $( document ).ready()
+        $(function() {
+            let table = new DataTable('#myTable');
         });
     </script>
 @endpush

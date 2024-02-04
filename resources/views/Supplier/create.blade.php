@@ -63,10 +63,10 @@
                                 <!-- Form Group (email address)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputEmailAddress">No. Telpon</label>
-                                    <input class="form-control {{ $errors->has('No_Tlp') ? 'is-invalid' : '' }}"
-                                        id="inputEmailAddress" type="text" placeholder="Masukkan No_Tlp"
-                                        value="{{ old('No_Tlp') }}" name="No_Tlp" />
-                                    @error('No_Tlp')
+                                    <input class="form-control {{ $errors->has('no_tlp') ? 'is-invalid' : '' }}"
+                                        id="inputEmailAddress" type="text" placeholder="Masukkan No.Tlp"
+                                        value="{{ old('no_tlp') }}" name="no_tlp" />
+                                    @error('no_tlp')
                                         <div id="validationServer03Feedback" class="invalid-feedback"
                                             style="text-transform: capitalize;">
                                             {{ $message }}

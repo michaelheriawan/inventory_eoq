@@ -45,3 +45,13 @@ input {
 .close-thik:after {
     content: "✖"; /* UTF-8 symbol */
 }
+
+.category-filter select {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: auto;
+}
+
+#myTable tr {
+    height: 40px;
+}

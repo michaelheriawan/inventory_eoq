@@ -52,6 +52,16 @@
                         <h3>Daftar Barang Masuk</h3>
 
                     </div>
+
+                    {{-- <label class="category-filter d-flex me-1">Barang :
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>Pilih Barang</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </label> --}}
+
                     <table class="data-table" style="width:100%">
                         <thead>
                             <tr>
@@ -109,9 +119,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('ui/js/moment.js') }}"></script>
     <script src="{{ asset('ui/js/moment-with-locales.js') }}"></script>
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.css" rel="stylesheet">
 
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.8/b-2.4.2/b-html5-2.4.2/datatables.min.js"></script>
     <script>
         $(document).ready(function() {
             moment.locale('id');
@@ -134,27 +142,34 @@
                     data: function(d) {
                         d.from_date = moment(picker.getDate().toDateString()).format('YYYY-MM-DD');
                         d.to_date = moment(picker.getEndDate().toDateString()).format('YYYY-MM-DD');
+
                     }
                 },
                 columns: [{
+
                         data: 'id_barang_masuk',
-                        name: 'id_barang_masuk'
+                        name: 'id_barang_masuk',
+                        width: '10px'
                     },
                     {
                         data: 'barang.nama',
-                        name: 'barang.nama'
+                        name: 'barang.nama',
+
                     },
                     {
                         data: 'created_at',
-                        name: 'created_at'
+                        name: 'created_at',
+                        width: '15%'
                     },
                     {
                         data: 'jumlah_masuk',
-                        name: 'jumlah_masuk'
+                        name: 'jumlah_masuk',
+                        width: '15px'
                     },
                     {
                         data: 'supplier.nama',
-                        name: 'supplier.nama'
+                        name: 'supplier.nama',
+                        width: '17%'
                     },
                     {
                         data: 'aksi',
@@ -168,7 +183,12 @@
                     render: function(data, type, row) {
                         return moment(data).format('L');
                     }
-                }]
+                }],
+                // initComplete: function() {
+                //     $(".dataTables_filter").addClass("d-flex");
+                //     $(".dataTables_filter").addClass("flex-row-reverse");
+                //     $(".dataTables_filter").append($(".category-filter"));
+                // }
 
             });
             $('#btnClear').click(function() {

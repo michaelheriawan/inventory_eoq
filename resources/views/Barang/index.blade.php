@@ -51,7 +51,7 @@
         <div class="container-xl px-4">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="myTable" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>ID Barang</th>
@@ -181,6 +181,7 @@
         });
 
         $(function() {
+            let table = new DataTable('#myTable');
             $('.detail_data').click(function() {
                 var tr_id = $(this).closest('tr').find('.id').text();
                 var url = "{{ route('barang.show', ['barang' => ':id']) }}";
@@ -189,8 +190,14 @@
                 moment.locale('id');
                 $.get(url,
                     function(data) {
-                        src_gambar = src_gambar.replace(':gambar', data.gambar);
-                        $('.d_gambar').attr('src', src_gambar);
+                        if (data.gambar) {
+                            src_gambar = src_gambar.replace(':gambar', data.gambar);
+                            $('.d_gambar').attr('src', src_gambar);
+                        } else {
+                            $('.d_gambar').attr('src',
+                                'https://placehold.jp/150x150.png?text=No+image');
+                        }
+
                         $('#d_kategori').text(data.kategoris.nama);
                         $('#d_nama').text(data.nama);
                         $('#d_stok').text(data.stok);

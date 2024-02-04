@@ -41,7 +41,7 @@ class SupplierController extends Controller
         Supplier::create($request->validate([
             'nama' => 'required|unique:suppliers|max:255',
             'email' => 'required|max:255',
-            'No_Tlp' => 'required|max:255',
+            'no_tlp' => 'required|max:255',
             'alamat' => 'required|max:255',
             'nama_usaha' => 'required|max:255',
         ]));
@@ -58,7 +58,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        return response()->json($supplier);
     }
 
     /**
@@ -85,7 +85,7 @@ class SupplierController extends Controller
         $supplier->update($request->validate([
             'nama' => 'required|max:255',
             'email' => 'required|max:255',
-            'No_Tlp' => 'required|max:255',
+            'no_tlp' => 'required|max:255',
             'alamat' => 'required|max:255',
             'nama_usaha' => 'required|max:255',
         ]));

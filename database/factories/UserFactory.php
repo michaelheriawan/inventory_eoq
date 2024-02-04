@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'alamat' => fake()->streetAddress(),
             'password' => Hash::make("test"),
             'level' => "admin",
-            'gambar' => "test",
+            'gambar' => "",
         ];
     }
 

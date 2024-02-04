@@ -39,7 +39,7 @@
         <div class="container-xl px-4">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="myTable" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>ID User</th>
@@ -97,12 +97,66 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center">
+                            <img src="" alt="" height="150" class="d_gambar">
+                        </div>
+
+                        <table class="table table-striped-columns mt-1">
+                            <tr>
+                                <td width="50%">Nama</td>
+                                <td id="d_nama"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Email</td>
+                                <td id="d_email"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">No.Tlp</td>
+                                <td id="d_no_tlp"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Alamat</td>
+                                <td id="d_alamat"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Level</td>
+                                <td id="d_level"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal dibuat</td>
+                                <td id="d_created"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal diubah</td>
+                                <td id="d_updated"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 @endsection
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <script src="{{ asset('ui/js/moment.js') }}"></script>
+    <script src="{{ asset('ui/js/moment-with-locales.js') }}"></script>
     <script>
         $(document).on('click', ".delete", function(event) {
             event.preventDefault();
@@ -123,6 +177,40 @@
                 }
             });
 
+        });
+
+        $(function() {
+            let table = new DataTable('#myTable');
+            $('.detail_data').click(function() {
+                var tr_id = $(this).closest('tr').find('.id').text();
+                var url = "{{ route('users.show', ['user' => ':id']) }}";
+                url = url.replace(':id', tr_id);
+                let src_gambar = "{{ asset('storage/' . ':user') }}"
+                moment.locale('id');
+                $.get(url,
+                    function(data) {
+                        if (data.gambar) {
+                            src_gambar = src_gambar.replace(':user', data.gambar);
+                            $('.d_gambar').attr('src', src_gambar);
+                        } else {
+                            $('.d_gambar').attr('src',
+                                'https://placehold.jp/150x150.png?text=No+image');
+                        }
+
+
+                        $('#d_nama').text(data.nama);
+                        $('#d_email').text(data.email);
+                        $('#d_alamat').text(data.alamat);
+                        $('#d_no_tlp').text(data.no_tlp);
+                        $('#d_level').text(data.level);
+
+                        // $('#d_created').text(data.created_at.split('T')[0]);
+                        $('#d_created').text(moment(data.created_at).format('L'));
+                        $('#d_created').text(moment(data.updated_at).format('L'));
+
+
+                    })
+            });
         });
     </script>
 @endpush

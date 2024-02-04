@@ -49,7 +49,7 @@
         <div class="container-xl px-4">
             <div class="card">
                 <div class="card-body">
-                    <table id="datatablesSimple">
+                    <table id="myTable" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -82,11 +82,12 @@
                                     <td>{{ $supplier->no_tlp }}</td>
                                     <td>{{ $supplier->nama_usaha }}</td>
                                     <td>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark"
                                             href="{{ route('supplier.edit', ['supplier' => $supplier->id_supplier]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
-                                        {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
-                                                data-feather="trash-2"></i></a> --}}
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                data-feather="eye"></i></a>
                                         <form
                                             action="{{ route('supplier.destroy', ['supplier' => $supplier->id_supplier]) }}"
                                             method="post" class="d-inline">
@@ -140,6 +141,10 @@
                 }
             });
 
+        });
+        // Shorthand for $( document ).ready()
+        $(function() {
+            let table = new DataTable('#myTable');
         });
     </script>
 @endpush

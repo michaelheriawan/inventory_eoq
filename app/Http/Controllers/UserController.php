@@ -66,7 +66,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(User::find($id));
+
     }
 
     /**
