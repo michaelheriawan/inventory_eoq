@@ -79,7 +79,7 @@
                                     <td>{{ $item->jumlah_masuk }}</td>
                                     <td>{{ $item->suppliers->nama }}</td>
                                     <td>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1"
                                             href="{{ route('barang.edit', ['barang' => $item->id_barang_masuk]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"

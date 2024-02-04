@@ -7,38 +7,36 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon icon-white"><i data-feather="arrow-down-circle"></i></div>
-                                Barang Keluar
+                                <div class="page-header-icon icon-white"><i data-feather="file-text"></i></div>
+                                Laporan Barang Keluar
                             </h1>
                             {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
                             </div> --}}
                         </div>
                         <div class="col-12 col-xl-auto mt-4">
-                            {{-- <button class="btn btn-sm btn-light text-primary shadow" type="button" data-bs-toggle="modal"
-                                data-bs-target="#createGroupModal">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-plus me-1">
-                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                                Tambah Barang Baru
-                            </button> --}}
-                            <a class="btn btn-sm btn-light text-primary shadow" href="{{ route('barang-keluar.create') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-plus me-1">
-                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                                Tambah Barang Keluar
-                            </a>
+                            <div class="d-flex">
+                                <div class="input-group input-group-joined border-0" style="width: 16.5rem">
+                                    <span class="input-group-text"><i class="text-primary"
+                                            data-feather="calendar"></i></span>
+                                    <input class="form-control ps-0 pointer" id="litepicker"
+                                        placeholder="Select date range..." />
+
+                                </div>
+                                <div class="ms-2">
+                                    <button class="btn btn-primary btn-icon rounded-1 shadow-sm" type="button"
+                                        id="btnClear">
+                                        <i data-feather="search" class="text-light" style="width: 1rem; height: 1rem;"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     <nav class="mt-4 rounded" aria-label="breadcrumb">
                         <ol class="breadcrumb px-3 py-2 rounded mb-0">
                             <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Barang Keluar</li>
+                            <li class="breadcrumb-item active">Laporan Barang Keluar</li>
                         </ol>
                     </nav>
                 </div>
@@ -48,8 +46,23 @@
         <!-- Main page content-->
         <div class="container-xl px-4">
             <div class="card">
+
                 <div class="card-body">
-                    <table id="myTable" style="width: 100%;">
+                    <div class="d-flex justify-content-between">
+                        <h3>Daftar Barang Keluar</h3>
+
+                    </div>
+
+                    {{-- <label class="category-filter d-flex me-1">Barang :
+                        <select class="form-select form-select-sm" aria-label="Default select example">
+                            <option selected>Pilih Barang</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </label> --}}
+
+                    <table id="myTable" style="width:100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -69,35 +82,8 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($BarangKeluars as $item)
-                                <tr>
-                                    <td class="id">{{ $item->id_barang_keluar }}</td>
-                                    <td class="nama">{{ $item->barangs->nama }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->jumlah_keluar }}</td>
 
-                                    <td>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                            href="{{ route('barang.edit', ['barang' => $item->id_barang_keluar]) }}"
-                                            id="myDiv"><i data-feather="edit"></i></a>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
-                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                data-feather="eye"></i></a>
-                                        {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
-                                                data-feather="trash-2"></i></a> --}}
-                                        {{-- <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang_masuk]) }}"
-                                            method="post" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-datatable btn-icon btn-transparent-dark delete"
-                                                type="submit"><i data-feather="trash-2"></i></button>
-                                        </form> --}}
-                                    </td>
-                                </tr>
-                            @endforeach
                         </tbody>
-
-
                     </table>
                 </div>
             </div>
@@ -150,41 +136,90 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
-        $(document).on('click', ".delete", function(event) {
-            event.preventDefault();
-            var form = $(this).closest("form");
-            var id = $(this).closest('tr').find('.id').text();
-            Swal.fire({
-                title: "Apakah Anda Yakin",
-                text: "Data yang terhapus tidak bisa dikembalikan!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Hapus!"
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    form.submit();
-                }
+        $(document).ready(function() {
+            moment.locale('id');
+            const picker = new Litepicker({
+                element: document.getElementById('litepicker'),
+                resetButton: true,
+                startDate: new Date(),
+                endDate: new Date(),
+                singleMode: false,
+                numberOfMonths: 2,
+                numberOfColumns: 2,
+                format: 'DD MMM, YYYY',
+                plugins: ['ranges'],
             });
+            var table = $('#myTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('laporan_barang_keluar.index') }}",
+                    data: function(d) {
+                        d.from_date = moment(picker.getDate().toDateString()).format('YYYY-MM-DD');
+                        d.to_date = moment(picker.getEndDate().toDateString()).format('YYYY-MM-DD');
+                    }
+                },
+                columns: [{
+                        className: 'id',
+                        data: 'id_barang_keluar',
+                        name: 'id_barang_keluar',
+                        width: '10px'
+                    },
+                    {
+                        data: 'barang.nama',
+                        name: 'barang.nama',
 
-        });
-        // Shorthand for $( document ).ready()
-        $(function() {
-            let table = new DataTable('#myTable');
-            $('.detail_data').click(function() {
-                var tr_id = $(this).closest('tr').find('.id').text();
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                        width: '15%'
+                    },
+                    {
+                        data: 'jumlah_keluar',
+                        name: 'jumlah_keluar',
+                        width: '15px'
+                    },
+                    {
+                        name: 'aksi',
+                        orderable: false,
+                        searchable: false,
+                        className: "clickable",
+                        "render": function(data, type, row, meta) {
+
+                            //console.log(row);
+                            //console.log(partNo);
+                            return "<a class='btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data' href='#' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id='" +
+                                row.id_barang_keluar + "'><i data-feather='eye'></i></a>";
+                            /*return "<a href='#' id='hlinkView' class='ti-eye' data-toggle='modal' data-target='#exampleModal' onclick='getPartDetailsByPartNumber(" + partNo + ")'></a>";*/
+                        },
+                    },
+                ],
+                columnDefs: [{
+                    target: [2],
+                    render: function(data, type, row) {
+                        return moment(data).format('L');
+                    }
+                }],
+                "drawCallback": function(settings) {
+                    feather.replace();
+                }
+
+            });
+            $('#btnClear').click(function() {
+                table.draw();
+
+            });
+            $("#myTable").on("click", "td.clickable", function() {
+                let cellText = $(this).children("a:first").data("id");
                 var url = "{{ route('barang-keluar.show', ['barang_keluar' => ':id']) }}";
-                url = url.replace(':id', tr_id);
+                url = url.replace(':id', cellText);
                 let src_gambar = "{{ asset('storage/' . ':gambar') }}"
                 moment.locale('id');
                 $.get(url,
                     function(data) {
 
-                        console.log(data);
                         if (data.gambar) {
                             src_gambar = src_gambar.replace(':gambar', data.gambar);
                             $('.d_gambar').attr('src', src_gambar);
@@ -200,10 +235,10 @@
                         // $('#d_created').text(data.created_at.split('T')[0]);
                         $('#d_created').text(moment(data.created_at).format('L'));
                         $('#d_created').text(moment(data.updated_at).format('L'));
-
-
                     })
             });
+
+
         });
     </script>
 @endpush

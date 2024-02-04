@@ -29,18 +29,10 @@ class LaporanBarangMasukController extends Controller
                 })
                 ->editColumn('supplier.nama', function ($data) {
                     return $data->suppliers->nama;
-                })
-                ->addColumn('aksi', function ($row) {
-
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
-
-                    return $btn;
-                })
-                ->rawColumns(['aksi'])
-                ->make(true);
+                })->make(true);
         }
 
-        return view('LaporanBarangMasuk.index', );
+        return view('LaporanBarangMasuk.index');
 
     }
 }

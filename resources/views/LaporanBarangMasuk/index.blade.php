@@ -62,7 +62,7 @@
                         </select>
                     </label> --}}
 
-                    <table class="data-table" style="width:100%">
+                    <table id="myTable" style="width:100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -112,6 +112,50 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Barang</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center">
+                            <img src="" alt="" height="150" class="d_gambar">
+                        </div>
+
+                        <table class="table table-striped-columns mt-1">
+                            <tr>
+                                <td width="50%">Kategori</td>
+                                <td id="d_kategori"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Nama Barang</td>
+                                <td id="d_nama"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Qty</td>
+                                <td id="d_jumlah_masuk"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal dibuat</td>
+                                <td id="d_created"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal diubah</td>
+                                <td id="d_updated"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 @endsection
 
@@ -131,7 +175,7 @@
                 format: 'DD MMM, YYYY',
                 plugins: ['ranges'],
             });
-            var table = $('.data-table').DataTable({
+            var table = $('#myTable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: {
@@ -143,7 +187,7 @@
                     }
                 },
                 columns: [{
-
+                        className: 'id',
                         data: 'id_barang_masuk',
                         name: 'id_barang_masuk',
                         width: '10px'
@@ -169,23 +213,30 @@
                         width: '17%'
                     },
                     {
-                        data: 'aksi',
                         name: 'aksi',
                         orderable: false,
-                        searchable: false
+                        searchable: false,
+                        className: "clickable",
+                        "render": function(data, type, row, meta) {
+
+                            //console.log(row);
+                            //console.log(partNo);
+                            return "<a class='btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data' href='#' data-bs-toggle='modal' data-bs-target='#exampleModal' data-id='" +
+                                row.id_barang_masuk + "'><i data-feather='eye'></i></a>";
+                            /*return "<a href='#' id='hlinkView' class='ti-eye' data-toggle='modal' data-target='#exampleModal' onclick='getPartDetailsByPartNumber(" + partNo + ")'></a>";*/
+                        },
                     },
                 ],
                 columnDefs: [{
+
                     target: [2],
                     render: function(data, type, row) {
                         return moment(data).format('L');
                     }
                 }],
-                // initComplete: function() {
-                //     $(".dataTables_filter").addClass("d-flex");
-                //     $(".dataTables_filter").addClass("flex-row-reverse");
-                //     $(".dataTables_filter").append($(".category-filter"));
-                // }
+                "drawCallback": function(settings) {
+                    feather.replace();
+                }
 
             });
             $('#btnClear').click(function() {
@@ -198,6 +249,35 @@
                 table.draw();
 
             });
+            $("#myTable").on("click", "td.clickable", function() {
+                let cellText = $(this).children("a:first").data("id");
+                var url = "{{ route('barang-masuk.show', ['barang_masuk' => ':id']) }}";
+                url = url.replace(':id', cellText);
+                let src_gambar = "{{ asset('storage/' . ':gambar') }}"
+                moment.locale('id');
+                $.get(url,
+                    function(data) {
+
+                        console.log(data);
+                        if (data.gambar) {
+                            src_gambar = src_gambar.replace(':gambar', data.gambar);
+                            $('.d_gambar').attr('src', src_gambar);
+                        } else {
+                            $('.d_gambar').attr('src',
+                                'https://placehold.jp/150x150.png?text=No+image');
+                        }
+
+                        $('#d_kategori').text(data.kategori);
+                        $('#d_nama').text(data.barang);
+                        $('#d_jumlah_masuk').text(data.jumlah_masuk);
+
+                        // $('#d_created').text(data.created_at.split('T')[0]);
+                        $('#d_created').text(moment(data.created_at).format('L'));
+                        $('#d_created').text(moment(data.updated_at).format('L'));
+                    })
+            });
+
+
         });
     </script>
 @endpush

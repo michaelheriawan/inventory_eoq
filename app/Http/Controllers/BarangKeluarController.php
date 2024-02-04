@@ -25,7 +25,19 @@ class BarangKeluarController extends Controller
         return view('BarangKeluar.create', ['barangs' => Barang::all(), 'users' => User::all()]);
 
     }
-
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return response()->json(BarangKeluar::join('barang', 'barang.id_barang', '=', 'barang_id')
+                ->join('kategori', 'kategori.id_kategori', '=', 'barang.kategori')
+                ->where('barang_keluar.id_barang_keluar', $id)
+                ->get(['barang_keluar.*', 'kategori.nama as kategori', 'barang.gambar', 'barang.nama as barang'])->first());
+    }
     /**
      * Store a newly created resource in storage.
      *

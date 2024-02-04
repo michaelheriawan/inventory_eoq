@@ -106,6 +106,54 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped-columns mt-1">
+                            <tr>
+                                <td width="50%">Nama</td>
+                                <td id="d_nama"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Email</td>
+                                <td id="d_email"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">No.Tlp</td>
+                                <td id="d_no_tlp"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Alamat</td>
+                                <td id="d_alamat"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Nama usaha</td>
+                                <td id="d_usaha"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal dibuat</td>
+                                <td id="d_created"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal diubah</td>
+                                <td id="d_updated"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 @endsection
 
@@ -142,9 +190,29 @@
             });
 
         });
-        // Shorthand for $( document ).ready()
         $(function() {
             let table = new DataTable('#myTable');
+            $('.detail_data').click(function() {
+                var tr_id = $(this).closest('tr').find('.id').text();
+                var url = "{{ route('supplier.show', ['supplier' => ':id']) }}";
+                url = url.replace(':id', tr_id);
+                let src_gambar = "{{ asset('storage/' . ':user') }}"
+                moment.locale('id');
+                $.get(url,
+                    function(data) {
+                        $('#d_nama').text(data.nama);
+                        $('#d_email').text(data.email);
+                        $('#d_alamat').text(data.alamat);
+                        $('#d_no_tlp').text(data.no_tlp);
+                        $('#d_usaha').text(data.nama_usaha);
+
+                        // $('#d_created').text(data.created_at.split('T')[0]);
+                        $('#d_created').text(moment(data.created_at).format('L'));
+                        $('#d_created').text(moment(data.updated_at).format('L'));
+
+
+                    })
+            });
         });
     </script>
 @endpush
