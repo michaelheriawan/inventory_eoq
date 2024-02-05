@@ -78,8 +78,8 @@
                                         {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
                                                 data-feather="trash-2"></i></a> --}}
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
-                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                data-feather="eye"></i></a>
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            data-id="{{ $user->id_user }}"><i data-feather="eye"></i></a>
                                         <form action="{{ route('users.destroy', ['user' => $user->id_user]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
@@ -131,7 +131,7 @@
                             </tr>
                             <tr>
                                 <td width="50%">Level</td>
-                                <td id="d_level"></td>
+                                <td id="d_level" class="text=capitilize"></td>
                             </tr>
                             <tr>
                                 <td width="50%">Tanggal dibuat</td>
@@ -179,9 +179,14 @@
         });
 
         $(function() {
-            let table = new DataTable('#myTable');
-            $('.detail_data').click(function() {
-                var tr_id = $(this).closest('tr').find('.id').text();
+            let table = new DataTable('#myTable', {
+                columnDefs: [{
+                    targets: 6,
+                    className: 'clickable'
+                }]
+            });
+            $("#myTable").on("click", "td.clickable .detail_data", function() {
+                var tr_id = $(this).data('id');
                 var url = "{{ route('users.show', ['user' => ':id']) }}";
                 url = url.replace(':id', tr_id);
                 let src_gambar = "{{ asset('storage/' . ':user') }}"
@@ -195,19 +200,13 @@
                             $('.d_gambar').attr('src',
                                 'https://placehold.jp/150x150.png?text=No+image');
                         }
-
-
                         $('#d_nama').text(data.nama);
                         $('#d_email').text(data.email);
                         $('#d_alamat').text(data.alamat);
                         $('#d_no_tlp').text(data.no_tlp);
                         $('#d_level').text(data.level);
-
-                        // $('#d_created').text(data.created_at.split('T')[0]);
                         $('#d_created').text(moment(data.created_at).format('L'));
                         $('#d_created').text(moment(data.updated_at).format('L'));
-
-
                     })
             });
         });

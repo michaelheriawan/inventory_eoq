@@ -32,6 +32,7 @@ Route::middleware(['isLogin'])->group(function () {
 });
 
 Route::get('fetch-barang/{barang}', [BarangController::class, 'fetchData'])->name('barang.fetch');
+Route::get('fetch-harga-beli/{barang}', [BarangMasukController::class, 'fetchHargaBeli'])->name('barang-masuk.fetchHargaBeli');
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
 Route::post('login/auth', [LoginController::class, 'authenticate'])->name('login.auth');
 

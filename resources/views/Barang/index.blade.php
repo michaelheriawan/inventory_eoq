@@ -87,8 +87,8 @@
                                             data-bs-target="#exampleModal">Launch Demo
                                             Modal</button> --}}
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
-                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                data-feather="eye"></i></a>
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            data-id="{{ $barang->id_barang }}"><i data-feather="eye"></i></a>
                                         <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
@@ -194,9 +194,14 @@
         });
 
         $(function() {
-            let table = new DataTable('#myTable');
-            $('.detail_data').click(function() {
-                var tr_id = $(this).closest('tr').find('.id').text();
+            let table = new DataTable('#myTable', {
+                columnDefs: [{
+                    targets: 4,
+                    className: 'clickable'
+                }]
+            });
+            $("#myTable").on("click", "td.clickable .detail_data", function() {
+                var tr_id = $(this).data('id');
                 var url = "{{ route('barang.show', ['barang' => ':id']) }}";
                 url = url.replace(':id', tr_id);
                 let src_gambar = "{{ asset('storage/' . ':gambar') }}"

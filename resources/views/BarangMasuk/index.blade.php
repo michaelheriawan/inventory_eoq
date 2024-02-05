@@ -83,8 +83,8 @@
                                             href="{{ route('barang.edit', ['barang' => $item->id_barang_masuk]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
-                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                data-feather="eye"></i></a>
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            data-id="{{ $item->id_barang_masuk }}"><i data-feather="eye"></i></a>
                                         {{-- <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang_masuk]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
@@ -130,6 +130,14 @@
                                 <td id="d_jumlah_masuk"></td>
                             </tr>
                             <tr>
+                                <td width="50%">Harga Beli</td>
+                                <td id="d_beli"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Total</td>
+                                <td id="d_total"></td>
+                            </tr>
+                            <tr>
                                 <td width="50%">Tanggal dibuat</td>
                                 <td id="d_created"></td>
                             </tr>
@@ -153,6 +161,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        function formatRupiah(num) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            }).format(num);
+        }
         $(document).on('click', ".delete", function(event) {
             event.preventDefault();
             var form = $(this).closest("form");
@@ -175,17 +189,21 @@
         });
         // Shorthand for $( document ).ready()
         $(function() {
-            let table = new DataTable('#myTable');
-            $('.detail_data').click(function() {
-                var tr_id = $(this).closest('tr').find('.id').text();
+            let table = new DataTable('#myTable', {
+                columnDefs: [{
+                    targets: 5,
+                    className: 'clickable'
+                }]
+            });
+
+            $("#myTable").on("click", "td.clickable .detail_data", function() {
+                let cellText = $(this).data('id');
                 var url = "{{ route('barang-masuk.show', ['barang_masuk' => ':id']) }}";
-                url = url.replace(':id', tr_id);
+                url = url.replace(':id', cellText);
                 let src_gambar = "{{ asset('storage/' . ':gambar') }}"
                 moment.locale('id');
                 $.get(url,
                     function(data) {
-
-                        console.log(data);
                         if (data.gambar) {
                             src_gambar = src_gambar.replace(':gambar', data.gambar);
                             $('.d_gambar').attr('src', src_gambar);
@@ -197,12 +215,11 @@
                         $('#d_kategori').text(data.kategori);
                         $('#d_nama').text(data.barang);
                         $('#d_jumlah_masuk').text(data.jumlah_masuk);
-
+                        $('#d_beli').text(formatRupiah(data.harga_beli));
+                        $('#d_total').text(formatRupiah(data.jumlah_masuk * data.harga_beli));
                         // $('#d_created').text(data.created_at.split('T')[0]);
                         $('#d_created').text(moment(data.created_at).format('L'));
                         $('#d_created').text(moment(data.updated_at).format('L'));
-
-
                     })
             });
         });

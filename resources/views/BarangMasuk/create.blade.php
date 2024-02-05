@@ -68,6 +68,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <input type="hidden" value="{{ Auth::user()->id_user }}" name="user_id">
                                 {{-- <div class="mb-3">
                                     <label class="small mb-1" for="inputFirstName">User</label>
                                     <input class="form-control {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
@@ -81,21 +82,9 @@
                                     @enderror
                                 </div> --}}
                                 <div class="mb-3">
-                                    <label class="small mb-1" for="inputLastName">Harga Beli</label>
-                                    <input class="form-control {{ $errors->has('harga_beli') ? 'is-invalid' : '' }}"
-                                        id="inputLastName" type="number" placeholder="Ketik jumlah Barang"
-                                        value="{{ old('harga_beli') }}" min="0" name="harga_beli" />
-                                    @error('harga_beli')
-                                        <div id="validationServer03Feedback" class="invalid-feedback"
-                                            style="text-transform: capitalize;">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                                <div class="mb-3">
                                     <label class="small mb-1" for="inputLastName">Jumlah Barang</label>
                                     <input class="form-control {{ $errors->has('jumlah_masuk') ? 'is-invalid' : '' }}"
-                                        id="inputLastName" type="number" placeholder="Ketik jumlah Barang"
+                                        id="myNumberInput" type="number" placeholder="Ketik jumlah Barang"
                                         value="{{ old('jumlah_masuk') }}" min="0" name="jumlah_masuk" />
                                     @error('jumlah_masuk')
                                         <div id="validationServer03Feedback" class="invalid-feedback"
@@ -103,6 +92,25 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputLastName">Harga Beli</label>
+                                    <input class="form-control {{ $errors->has('harga_beli') ? 'is-invalid' : '' }}"
+                                        id="inputLastName" type="number" placeholder="" value="{{ old('harga_beli') }}"
+                                        min="0" name="harga_beli" readonly />
+                                    @error('harga_beli')
+                                        <div id="validationServer03Feedback" class="invalid-feedback"
+                                            style="text-transform: capitalize;">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputLastName">Total</label>
+                                    <input class="form-control" id="total" type="number"
+                                        placeholder="Ketik jumlah Barang" value="" min="0" readonly />
+
                                 </div>
                                 <div class="mb-3">
                                     <label class="small mb-1">Keterangan</label>
@@ -126,3 +134,32 @@
         </div>
     </main>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function() {
+            moment.locale('id');
+            $('select[name="barang_id"]').on('change', function(e) {
+                var optionSelected = $("option:selected", this);
+                var valueSelected = this.value;
+                var url = "{{ route('barang-masuk.fetchHargaBeli', ['barang' => ':id']) }}";
+                url = url.replace(':id', valueSelected);
+                $.get(url,
+                    function(data) {
+                        $('input[name="harga_beli"]').val(data.harga_beli);
+                        calc();
+                    })
+            });
+
+            function calc() {
+                var inputValue = $('#myNumberInput').val();
+                $('#total').val(inputValue * $('input[name="harga_beli"]').val());
+            }
+            $('#myNumberInput').on('input', function() {
+                calc();
+            });
+
+        });
+    </script>
+@endpush
