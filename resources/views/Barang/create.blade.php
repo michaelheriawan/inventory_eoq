@@ -61,6 +61,34 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (first name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputFirstName">Harga Beli</label>
+                                        <input class="form-control {{ $errors->has('harga_beli') ? 'is-invalid' : '' }}"
+                                            id="inputFirstName" type="text" placeholder="Ketik Harga Beli"
+                                            value="{{ old('harga_beli') }}" name="harga_beli" />
+                                        @error('harga_beli')
+                                            <div id="validationServer03Feedback" class="invalid-feedback"
+                                                style="text-transform: capitalize;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <!-- Form Group (last name)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputLastName">Harga Jual</label>
+                                        <input class="form-control {{ $errors->has('harga_jual') ? 'is-invalid' : '' }}"
+                                            id="inputLastName" type="number" placeholder="Ketik Harga Jual"
+                                            value="{{ old('harga_jual') }}" min="0" name="harga_jual" />
+                                        @error('harga_jual')
+                                            <div id="validationServer03Feedback" class="invalid-feedback"
+                                                style="text-transform: capitalize;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="mb-3">
                                     <label class="small mb-1">Kategori</label>
                                     <select class="form-select {{ $errors->has('kategori') ? 'is-invalid' : '' }}"
@@ -96,9 +124,8 @@
                                         </div>
                                     @enderror
                                 </div>
-
                                 <!-- Submit button-->
-                                <button class="btn btn-primary" type="submit">Tambah barang</button>
+                                <button class="btn btn-primary" type="submit">Simpan</button>
                             </form>
                         </div>
                     </div>

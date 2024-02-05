@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id_supplier')->on('supplier');
             $table->unsignedInteger('jumlah_masuk');
+            $table->unsignedInteger('harga_beli');
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

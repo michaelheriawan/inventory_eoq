@@ -136,7 +136,7 @@
 
 
                                 <!-- Submit button-->
-                                <button class="btn btn-primary" type="submit">Tambah EOQ</button>
+                                <button class="btn btn-primary" type="submit">Simpan</button>
                             </form>
                         </div>
                     </div>

@@ -92,10 +92,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
         </script>
         <script src={{ asset('ui/js/scripts.js') }}></script>
+        @include('sweetalert::alert')
     </body>
 
 </html>
-
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@endpush

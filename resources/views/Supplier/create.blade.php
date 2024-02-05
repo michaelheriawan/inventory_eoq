@@ -103,7 +103,7 @@
                                         alt="your image" title='' />
                                 </div>
                                 <!-- Submit button-->
-                                <button class="btn btn-primary" type="submit">Tambah supplier</button>
+                                <button class="btn btn-primary" type="submit">Simpan</button>
                             </form>
                         </div>
                     </div>

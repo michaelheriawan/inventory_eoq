@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('barang_id');
             $table->foreign('barang_id')->references('id_barang')->on('barang');
             $table->unsignedInteger('jumlah_keluar');
+            $table->unsignedInteger('harga_jual');
             $table->text('keterangan')->nullable();
             $table->timestamps();
         });

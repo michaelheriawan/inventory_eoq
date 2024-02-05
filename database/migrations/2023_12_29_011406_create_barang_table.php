@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('nama');
             $table->unsignedInteger('stok');
             $table->text('gambar')->nullable();
+            $table->unsignedInteger('harga_beli');
+            $table->unsignedInteger('harga_jual');
             $table->timestamps();
         });
     }

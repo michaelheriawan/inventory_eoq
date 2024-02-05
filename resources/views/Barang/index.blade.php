@@ -135,6 +135,14 @@
                                 <td id="d_stok"></td>
                             </tr>
                             <tr>
+                                <td width="50%">Harga Beli</td>
+                                <td id="d_beli"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Harga Jual</td>
+                                <td id="d_jual"></td>
+                            </tr>
+                            <tr>
                                 <td width="50%">Tanggal dibuat</td>
                                 <td id="d_created"></td>
                             </tr>
@@ -158,6 +166,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        function formatRupiah(num) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            }).format(num);
+        }
         $(document).on('click', ".delete", function(event) {
             event.preventDefault();
             var form = $(this).closest("form");
@@ -200,6 +214,8 @@
                         $('#d_kategori').text(data.kategoris.nama);
                         $('#d_nama').text(data.nama);
                         $('#d_stok').text(data.stok);
+                        $('#d_beli').text(formatRupiah(data.harga_beli));
+                        $('#d_jual').text(formatRupiah(data.harga_jual));
 
                         // $('#d_created').text(data.created_at.split('T')[0]);
                         $('#d_created').text(moment(data.created_at).format('L'));

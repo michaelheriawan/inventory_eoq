@@ -68,16 +68,24 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="small mb-1">Nama Petugas</label>
-                                    <select class="form-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
-                                        aria-label="Default select example" name="user_id">
-                                        <option selected disabled value="">Pilih Petugas:</option>
-                                        @foreach ($users as $item)
-                                            <option value="{{ $item->id_user }}">{{ $item->nama }}</option>
-                                        @endforeach
-                                    </select>
+                                {{-- <div class="mb-3">
+                                    <label class="small mb-1" for="inputFirstName">User</label>
+                                    <input class="form-control {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
+                                        id="inputFirstName" type="text" placeholder="Ketik Nama Barang"
+                                        value="{{ Auth::user()->nama }}" name="user_id" readonly />
                                     @error('user_id')
+                                        <div id="validationServer03Feedback" class="invalid-feedback"
+                                            style="text-transform: capitalize;">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div> --}}
+                                <div class="mb-3">
+                                    <label class="small mb-1" for="inputLastName">Harga Beli</label>
+                                    <input class="form-control {{ $errors->has('harga_beli') ? 'is-invalid' : '' }}"
+                                        id="inputLastName" type="number" placeholder="Ketik jumlah Barang"
+                                        value="{{ old('harga_beli') }}" min="0" name="harga_beli" />
+                                    @error('harga_beli')
                                         <div id="validationServer03Feedback" class="invalid-feedback"
                                             style="text-transform: capitalize;">
                                             {{ $message }}
@@ -109,7 +117,7 @@
                                 </div>
 
                                 <!-- Submit button-->
-                                <button class="btn btn-primary" type="submit">Tambah barang masuk</button>
+                                <button class="btn btn-primary" type="submit">Simpan</button>
                             </form>
                         </div>
                     </div>

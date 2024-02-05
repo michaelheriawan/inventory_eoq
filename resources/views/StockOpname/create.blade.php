@@ -104,7 +104,7 @@
                                 </div>
 
                                 <!-- Submit button-->
-                                <button class="btn btn-primary" type="submit">Tambah Stock Opname</button>
+                                <button class="btn btn-primary" type="submit">Simpan</button>
                             </form>
                         </div>
                     </div>

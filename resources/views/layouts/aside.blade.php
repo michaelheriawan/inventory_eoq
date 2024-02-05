@@ -106,7 +106,7 @@
         <div class="sidenav-footer">
             <div class="sidenav-footer-content">
                 <div class="sidenav-footer-subtitle">Logged in as:</div>
-                <div class="sidenav-footer-title">Michael</div>
+                <div class="sidenav-footer-title text-capitalize">{{ Auth::user()->level }}</div>
             </div>
         </div>
     </nav>

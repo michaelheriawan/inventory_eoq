@@ -114,7 +114,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button"
                             data-bs-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary-soft text-primary" type="submit">Tambah Kategori Baru</button>
+                        <button class="btn btn-primary-soft text-primary" type="submit">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -151,7 +151,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-danger-soft text-danger" type="button"
                             data-bs-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary-soft text-primary" type="submit">Edit Kategori</button>
+                        <button class="btn btn-primary-soft text-primary" type="submit">Simpan</button>
                     </div>
                 </form>
             </div>

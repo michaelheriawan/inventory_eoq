@@ -24,9 +24,13 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['isLogin'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
 });
+
 Route::get('fetch-barang/{barang}', [BarangController::class, 'fetchData'])->name('barang.fetch');
 Route::get('login', [LoginController::class, 'index'])->name('login.index');
 Route::post('login/auth', [LoginController::class, 'authenticate'])->name('login.auth');

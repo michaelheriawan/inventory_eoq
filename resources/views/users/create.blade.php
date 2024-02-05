@@ -138,7 +138,7 @@
                                         alt="your image" title='' />
                                 </div> --}}
                                     <!-- Submit button-->
-                                    <button class="btn btn-primary" type="submit">Tambah User</button>
+                                    <button class="btn btn-primary" type="submit">Simpan</button>
                                 </form>
                         </div>
                     </div>

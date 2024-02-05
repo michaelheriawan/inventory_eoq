@@ -136,7 +136,7 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <button class="btn btn-primary" type="submit">Edit User</button>
+                                <button class="btn btn-primary" type="submit">Simpan</button>
                             </form>
                         </div>
                     </div>

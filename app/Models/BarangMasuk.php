@@ -11,7 +11,7 @@ class BarangMasuk extends Model
     use HasFactory;
     protected $table = 'barang_masuk';
     protected $primaryKey = 'id_barang_masuk';
-    protected $fillable = ['user_id', 'barang_id', 'supplier_id', 'jumlah_masuk', 'keterangan'];
+    protected $fillable = ['user_id', 'barang_id', 'supplier_id', 'jumlah_masuk', 'keterangan', 'harga_beli'];
     public function barangs(): BelongsTo
     {
         return $this->belongsTo(Barang::class, 'barang_id', 'id_barang');

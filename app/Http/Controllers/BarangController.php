@@ -41,9 +41,11 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama' => 'required|unique:barangs|max:255',
+            'nama' => 'required|unique:barang|max:255',
             'kategori' => 'required|max:255',
             'stok' => 'required|min:1',
+            'harga_beli' => 'required|min:1',
+            'harga_jual' => 'required|min:1',
             'gambar' => 'required|image|mimes:jpeg,png,jpg',
         ]);
         if ($request->has('gambar')) {
@@ -92,6 +94,8 @@ class BarangController extends Controller
             'nama' => 'required|max:255',
             'kategori' => 'required|max:255',
             'stok' => 'required|min:1',
+            'harga_beli' => 'required|min:1',
+            'harga_jual' => 'required|min:1',
             'gambar' => 'image|mimes:jpeg,png,jpg',
         ]);
 
