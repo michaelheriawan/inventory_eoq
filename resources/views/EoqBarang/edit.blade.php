@@ -8,7 +8,7 @@
                         <div class="col-auto mb-3">
                             <h1 class="page-header-title">
                                 <div class="arrow-up-circle"><i data-feather="activity"></i></div>
-                                Tambah EOQ Barang
+                                Edit EOQ Barang
                             </h1>
                         </div>
                         <div class="col-12 col-xl-auto mb-3">
@@ -29,16 +29,21 @@
                     <div class="card mb-4">
                         <div class="card-header">Detail EOQ Barang</div>
                         <div class="card-body">
-                            <form method="post" action="{{ route('eoq-barang.store') }}">
+                            <form method="post"
+                                action="{{ route('eoq-barang.update', ['eoq_barang' => $eoq->id_eoq_barang]) }}">
+                                @method('PUT')
                                 @csrf
                                 <!-- Form Row-->
                                 <div class="mb-3">
                                     <label class="small mb-1">Nama Barang</label>
                                     <select class="form-select {{ $errors->has('barang_id') ? 'is-invalid' : '' }}"
                                         aria-label="Default select example" name="barang_id" id="mySelect">
-                                        <option selected disabled value="">Pilih Barang:</option>
+                                        <option disabled value="">Pilih Barang:</option>
                                         @foreach ($barangs as $item)
-                                            <option value="{{ $item->id_barang }}">{{ $item->nama }}</option>
+                                            <option value="{{ $item->id_barang }}"
+                                                {{ $eoq->barang_id == $item->id_barang ? 'selected' : '' }}>
+                                                {{ $item->nama }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('barang_id')
@@ -53,7 +58,7 @@
                                         <label class="small mb-1" for="inputLastName">Bulan</label>
                                         <input class="form-control {{ $errors->has('bulan') ? 'is-invalid' : '' }}"
                                             id="bulan" type="text" placeholder="Ketik bulan"
-                                            value="{{ old('bulan') }}" min="0" name="bulan" />
+                                            value="{{ old('bulan', $eoq->bulan) }}" min="0" name="bulan" />
                                         @error('bulan')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
                                                 style="text-transform: capitalize;">
@@ -66,7 +71,7 @@
                                         <input
                                             class="form-control {{ $errors->has('jumlah_permintaan') ? 'is-invalid' : '' }}"
                                             id="permintaan" type="number" placeholder="Ketik jumlah permintaan"
-                                            value="{{ old('jumlah_permintaan') }}" min="0"
+                                            value="{{ old('jumlah_permintaan', $eoq->jumlah_permintaan) }}" min="0"
                                             name="jumlah_permintaan" />
                                         @error('jumlah_permintaan')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
@@ -81,7 +86,8 @@
                                         <label class="small mb-1" for="inputLastName">Harga Barang</label>
                                         <input class="form-control {{ $errors->has('harga_barang') ? 'is-invalid' : '' }}"
                                             id="harga_barang" type="number" placeholder="Ketik harga barang"
-                                            value="{{ old('harga_barang') }}" min="0" name="harga_barang" />
+                                            value="{{ old('harga_barang', $eoq->harga_barang) }}" min="0"
+                                            name="harga_barang" />
                                         @error('harga_barang')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
                                                 style="text-transform: capitalize;">
@@ -100,7 +106,8 @@
                                         <label class="small mb-1" for="inputLastName">Biaya Pesan</label>
                                         <input class="form-control {{ $errors->has('biaya_pesan') ? 'is-invalid' : '' }}"
                                             id="biaya_pesan" type="number" placeholder="Ketik biaya pesan"
-                                            value="{{ old('biaya_pesan') }}" min="0" name="biaya_pesan" />
+                                            value="{{ old('biaya_pesan', $eoq->biaya_pesan) }}" min="0"
+                                            name="biaya_pesan" />
                                         @error('biaya_pesan')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
                                                 style="text-transform: capitalize;">
@@ -112,8 +119,8 @@
                                         <label class="small mb-1" for="inputLastName">Biaya Simpan</label>
                                         <input class="form-control {{ $errors->has('biaya_simpan') ? 'is-invalid' : '' }}"
                                             id="biaya_simpan" type="number" placeholder="Ketik biaya simpan"
-                                            value="{{ old('biaya_simpan') }}" min="0" name="biaya_simpan"
-                                            readonly />
+                                            value="{{ old('biaya_simpan', $eoq->biaya_simpan) }}" min="0"
+                                            name="biaya_simpan" readonly />
                                         @error('biaya_simpan')
                                             <div id="validationServer03Feedback" class="invalid-feedback"
                                                 style="text-transform: capitalize;">
@@ -125,8 +132,8 @@
                                 <div class="mb-3">
                                     <label class="small mb-1" for="inputLastName">EOQ</label>
                                     <input class="form-control {{ $errors->has('eoq') ? 'is-invalid' : '' }}"
-                                        id="eoq" type="number" value="{{ old('eoq') }}" min="0"
-                                        name="eoq" readonly />
+                                        id="eoq" type="number" value="{{ old('eoq', $eoq->eoq) }}"
+                                        min="0" name="eoq" readonly />
                                     @error('eoq')
                                         <div id="validationServer03Feedback" class="invalid-feedback"
                                             style="text-transform: capitalize;">

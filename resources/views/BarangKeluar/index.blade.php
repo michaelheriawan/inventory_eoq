@@ -77,9 +77,7 @@
                                     <td>{{ $item->jumlah_keluar }}</td>
 
                                     <td>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                            href="{{ route('barang.edit', ['barang' => $item->id_barang_keluar]) }}"
-                                            id="myDiv"><i data-feather="edit"></i></a>
+
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
                                             href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                 data-feather="eye"></i></a>
@@ -129,6 +127,14 @@
                                 <td id="d_jumlah_keluar"></td>
                             </tr>
                             <tr>
+                                <td width="50%">Harga Jual</td>
+                                <td id="d_jual"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Total</td>
+                                <td id="d_total"></td>
+                            </tr>
+                            <tr>
                                 <td width="50%">Tanggal dibuat</td>
                                 <td id="d_created"></td>
                             </tr>
@@ -152,6 +158,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        function formatRupiah(num) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            }).format(num);
+        }
         $(document).on('click', ".delete", function(event) {
             event.preventDefault();
             var form = $(this).closest("form");
@@ -174,7 +186,12 @@
         });
         // Shorthand for $( document ).ready()
         $(function() {
-            let table = new DataTable('#myTable');
+            let table = new DataTable('#myTable', {
+                columnDefs: [{
+                    targets: 4,
+                    className: 'clickable'
+                }]
+            });
             $('.detail_data').click(function() {
                 var tr_id = $(this).closest('tr').find('.id').text();
                 var url = "{{ route('barang-keluar.show', ['barang_keluar' => ':id']) }}";
@@ -196,7 +213,8 @@
                         $('#d_kategori').text(data.kategori);
                         $('#d_nama').text(data.barang);
                         $('#d_jumlah_keluar').text(data.jumlah_keluar);
-
+                        $('#d_jual').text(formatRupiah(data.harga_jual));
+                        $('#d_total').text(formatRupiah(data.jumlah_keluar * data.harga_jual));
                         // $('#d_created').text(data.created_at.split('T')[0]);
                         $('#d_created').text(moment(data.created_at).format('L'));
                         $('#d_created').text(moment(data.updated_at).format('L'));

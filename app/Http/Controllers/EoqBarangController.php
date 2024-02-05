@@ -19,6 +19,10 @@ class EoqBarangController extends Controller
 
     }
 
+    public function edit(EoqBarang $eoqBarang)
+    {
+        return view('EoqBarang.edit', ['barangs' => Barang::all(), 'eoq' => $eoqBarang]);
+    }
     /**
      * Display the specified resource.
      *
@@ -44,6 +48,28 @@ class EoqBarangController extends Controller
             'eoq' => 'required|min:1',
         ]));
         Alert::success('Hore!', 'Eoq berhasil ditambahkan!');
+        return redirect()->back();
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Supplier  $supplier
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, EoqBarang $eoqBarang)
+    {
+        $eoqBarang->update($request->validate([
+            'barang_id' => 'required|max:255',
+            'bulan' => 'required|max:255',
+            'jumlah_permintaan' => 'required|min:1',
+            'harga_barang' => 'required|min:1',
+            'biaya_pesan' => 'required|min:1',
+            'biaya_simpan' => 'required|min:1',
+            'eoq' => 'required|min:1',
+        ]));
+        Alert::success('Hore!', 'Eoq berhasil diubah!');
         return redirect()->back();
     }
 }

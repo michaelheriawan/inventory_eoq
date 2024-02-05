@@ -86,7 +86,7 @@
                                     <td>{{ $item->eoq }}</td>
                                     <td>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
-                                            href="{{ route('barang.edit', ['barang' => $item->id_eoq_barang]) }}"
+                                            href="{{ route('eoq-barang.edit', ['eoq_barang' => $item->id_eoq_barang]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
                                         {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
                                                 data-feather="trash-2"></i></a> --}}

@@ -131,7 +131,7 @@
                             </tr>
                             <tr>
                                 <td width="50%">Level</td>
-                                <td id="d_level" class="text=capitilize"></td>
+                                <td id="d_level" class="text-capitalize"></td>
                             </tr>
                             <tr>
                                 <td width="50%">Tanggal dibuat</td>

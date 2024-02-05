@@ -86,8 +86,8 @@
                                             href="{{ route('supplier.edit', ['supplier' => $supplier->id_supplier]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
-                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                data-feather="eye"></i></a>
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            data-id="{{ $supplier->id_supplier }}"><i data-feather="eye"></i></a>
                                         <form
                                             action="{{ route('supplier.destroy', ['supplier' => $supplier->id_supplier]) }}"
                                             method="post" class="d-inline">
@@ -112,7 +112,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detail User</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Supplier</h5>
                         <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -191,9 +191,14 @@
 
         });
         $(function() {
-            let table = new DataTable('#myTable');
-            $('.detail_data').click(function() {
-                var tr_id = $(this).closest('tr').find('.id').text();
+            let table = new DataTable('#myTable', {
+                columnDefs: [{
+                    targets: 6,
+                    className: 'clickable'
+                }]
+            });
+            $("#myTable").on("click", "td.clickable .detail_data", function() {
+                var tr_id = $(this).data('id');
                 var url = "{{ route('supplier.show', ['supplier' => ':id']) }}";
                 url = url.replace(':id', tr_id);
                 let src_gambar = "{{ asset('storage/' . ':user') }}"
