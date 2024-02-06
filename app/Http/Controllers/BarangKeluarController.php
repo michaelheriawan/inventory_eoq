@@ -35,8 +35,9 @@ class BarangKeluarController extends Controller
     {
         return response()->json(BarangKeluar::join('barang', 'barang.id_barang', '=', 'barang_id')
                 ->join('kategori', 'kategori.id_kategori', '=', 'barang.kategori')
+                ->join('user', 'user.id_user', '=', 'user_id')
                 ->where('barang_keluar.id_barang_keluar', $id)
-                ->get(['barang_keluar.*', 'kategori.nama as kategori', 'barang.gambar', 'barang.nama as barang'])->first());
+                ->get(['barang_keluar.*', 'kategori.nama as kategori', 'barang.gambar', 'barang.nama as barang', 'user.nama as user_nama'])->first());
     }
     /**
      * Store a newly created resource in storage.
@@ -51,7 +52,6 @@ class BarangKeluarController extends Controller
             'barang_id' => 'required|max:255',
             'user_id' => 'required|max:255',
             'jumlah_keluar' => 'required|min:1',
-            'keterangan' => 'max:500',
         ]);
 
         if (BarangKeluar::create($validated)) {

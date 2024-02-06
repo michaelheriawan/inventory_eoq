@@ -41,7 +41,6 @@ class StockOpnameController extends Controller
             'user_id' => 'required|max:255',
             'sisa_stok' => 'required|min:1',
             'stok_update' => 'required|min:1',
-            'keterangan' => 'max:500',
         ]);
         if (StockOpname::create($validated)) {
             $barang = Barang::find($validated['barang_id']);

@@ -72,4 +72,29 @@ class EoqBarangController extends Controller
         Alert::success('Hore!', 'Eoq berhasil diubah!');
         return redirect()->back();
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int $id)
+    {
+        return response()->json(EoqBarang::with('barangs')->find($id));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(EoqBarang $eoqBarang)
+    {
+        $eoqBarang->delete();
+        Alert::success('Hore!', 'EOQ Barang berhasil dihapus!');
+        return redirect()->back();
+
+    }
 }

@@ -97,7 +97,7 @@ class UserController extends Controller
             'alamat' => 'required',
             'password' => 'required',
             'level' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg',
+            'gambar' => 'image|mimes:jpeg,png,jpg',
         ]);
 
         if ($request->has('gambar')) {

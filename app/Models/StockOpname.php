@@ -11,7 +11,7 @@ class StockOpname extends Model
     use HasFactory;
     protected $table = 'stock_opname';
     protected $primaryKey = 'id_stock_opname';
-    protected $fillable = ['user_id', 'barang_id', 'sisa_stok', 'stok_update', 'keterangan'];
+    protected $fillable = ['user_id', 'barang_id', 'sisa_stok', 'stok_update'];
     public function barangs(): BelongsTo
     {
         return $this->belongsTo(Barang::class, 'barang_id', 'id_barang');

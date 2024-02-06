@@ -7,7 +7,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon icon-white"><i data-feather="activity"></i></div>
+                                <div class="page-header-icon icon-white"><i data-feather="bar-chart-2"></i></div>
                                 EOQ Barang
                             </h1>
                             {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
@@ -48,6 +48,7 @@
         <!-- Main page content-->
         <div class="container-xl px-4">
             <div class="card">
+                <div class="card-header">Daftar EOQ Barang</div>
                 <div class="card-body">
                     <table id="myTable" style="width: 100%;">
                         <thead>
@@ -85,18 +86,20 @@
                                     <td>{{ $item->biaya_simpan }}</td>
                                     <td>{{ $item->eoq }}</td>
                                     <td>
-                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
+                                            href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            data-id="{{ $item->id_eoq_barang }}"><i data-feather="eye"></i></a>
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark me-1"
                                             href="{{ route('eoq-barang.edit', ['eoq_barang' => $item->id_eoq_barang]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
-                                        {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
-                                                data-feather="trash-2"></i></a> --}}
-                                        {{-- <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang_masuk]) }}"
+                                        <form
+                                            action="{{ route('eoq-barang.destroy', ['eoq_barang' => $item->id_eoq_barang]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-datatable btn-icon btn-transparent-dark delete"
                                                 type="submit"><i data-feather="trash-2"></i></button>
-                                        </form> --}}
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -107,6 +110,63 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Barang</h5>
+                        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center">
+                            <img src="" alt="" height="150" class="d_gambar">
+                        </div>
+
+                        <table class="table table-striped-columns mt-1">
+
+                            <tr>
+                                <td width="50%">Nama Barang</td>
+                                <td id="d_nama"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Bulan</td>
+                                <td id="d_bulan"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Harga</td>
+                                <td id="d_harga"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Biaya Pesan</td>
+                                <td id="d_pesan"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Biaya Simpan</td>
+                                <td id="d_simpan"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Eoq</td>
+                                <td id="d_eoq"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal dibuat</td>
+                                <td id="d_created"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">Tanggal diubah</td>
+                                <td id="d_updated"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 @endsection
 
@@ -114,6 +174,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        function formatRupiah(num) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+            }).format(num);
+        }
         $(document).on('click', ".delete", function(event) {
             event.preventDefault();
             var form = $(this).closest("form");
@@ -136,7 +202,41 @@
         });
         // Shorthand for $( document ).ready()
         $(function() {
-            let table = new DataTable('#myTable');
+            let table = new DataTable('#myTable', {
+                columnDefs: [{
+                    targets: 7,
+                    className: 'clickable'
+                }]
+            });
+
+            $("#myTable").on("click", "td.clickable .detail_data", function() {
+                let cellText = $(this).data('id');
+                var url = "{{ route('eoq-barang.show', ['eoq_barang' => ':id']) }}";
+                url = url.replace(':id', cellText);
+                let src_gambar = "{{ asset('storage/' . ':gambar') }}"
+                moment.locale('id');
+                $.get(url,
+                    function(data) {
+                        console.log(data);
+                        if (data.barangs.gambar) {
+                            src_gambar = src_gambar.replace(':gambar', data.barangs.gambar);
+                            $('.d_gambar').attr('src', src_gambar);
+                        } else {
+                            $('.d_gambar').attr('src',
+                                'https://placehold.jp/150x150.png?text=No+image');
+                        }
+
+                        $('#d_eoq').text(data.eoq);
+                        $('#d_harga').text(formatRupiah(data.harga_barang));
+                        $('#d_nama').text(data.barangs.nama);
+                        $('#d_bulan').text(data.bulan);
+                        $('#d_pesan').text(formatRupiah(data.biaya_pesan));
+                        $('#d_simpan').text(formatRupiah(data.biaya_simpan));
+                        // $('#d_created').text(data.created_at.split('T')[0]);
+                        $('#d_created').text(moment(data.created_at).format('L'));
+                        $('#d_created').text(moment(data.updated_at).format('L'));
+                    })
+            });
         });
     </script>
 @endpush

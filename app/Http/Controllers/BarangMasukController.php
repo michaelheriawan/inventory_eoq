@@ -42,8 +42,9 @@ class BarangMasukController extends Controller
     {
         return response()->json(BarangMasuk::join('barang', 'barang.id_barang', '=', 'barang_id')
                 ->join('kategori', 'kategori.id_kategori', '=', 'barang.kategori')
+                ->join('user', 'user.id_user', '=', 'user_id')
                 ->where('barang_masuk.id_barang_masuk', $id)
-                ->get(['barang_masuk.*', 'kategori.nama as kategori', 'barang.gambar', 'barang.nama as barang', 'barang.harga_beli'])->first());
+                ->get(['barang_masuk.*', 'kategori.nama as kategori', 'barang.gambar', 'barang.nama as barang', 'barang.harga_beli', 'user.nama as user_nama'])->first());
     }
 
     /**
@@ -71,7 +72,6 @@ class BarangMasukController extends Controller
             'user_id' => 'required|max:255',
             'jumlah_masuk' => 'required|min:1',
             'harga_beli' => 'required|min:1',
-            'keterangan' => 'max:500',
         ]);
 
         if (BarangMasuk::create($validated)) {

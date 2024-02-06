@@ -48,7 +48,8 @@
                                         </div>
                                     @enderror
                                 </div>
-                                <div class="mb-3">
+                                <input type="hidden" value="{{ Auth::user()->id_user }}" name="user_id">
+                                {{-- <div class="mb-3">
                                     <label class="small mb-1">Nama Petugas</label>
                                     <select class="form-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
                                         aria-label="Default select example" name="user_id">
@@ -63,7 +64,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="row gx-3 mb-3">
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLastName">Sisa Stok</label>
@@ -91,7 +92,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label class="small mb-1">Keterangan</label>
                                     <textarea class="lh-base form-control" type="text" name="keterangan" placeholder="keterangan stok opname"
                                         rows="4"></textarea>
@@ -101,7 +102,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">Simpan</button>

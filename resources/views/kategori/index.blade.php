@@ -39,6 +39,7 @@
         <!-- Main page content-->
         <div class="container-xl px-4">
             <div class="card">
+                <div class="card-header">Daftar Kategori</div>
                 <div class="card-body">
                     <table id="myTable" style="width: 100%;">
                         <thead>

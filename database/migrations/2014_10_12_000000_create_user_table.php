@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('level');
             $table->text('gambar')->nullable();
+
             $table->timestamps();
         });
     }
@@ -33,6 +34,7 @@ return new class extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('user');
     }
 };

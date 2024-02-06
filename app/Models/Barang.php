@@ -15,12 +15,12 @@ class Barang extends Model
     protected $fillable = ['nama', 'kategori', 'stok', 'gambar', 'harga_beli', 'harga_jual'];
     public function kategoris(): BelongsTo
     {
-        return $this->belongsTo(kategori::class, 'kategori', 'id_kategori')->withTrashed();
+        return $this->belongsTo(kategori::class, 'kategori', 'id_kategori');
     }
 
     public function barang_masuks(): HasMany
     {
-        return $this->belongsTo(BarangMasuk::class, 'barang_id', 'id_barang')->withTrashed();
+        return $this->hasMany(BarangMasuk::class, 'barang_id', 'id_barang');
 
     }
 }

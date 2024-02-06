@@ -31,8 +31,17 @@ class LoginController extends Controller
             return redirect()->intended('/');
         }
 
-        Alert::success('Error!', 'The provided credentials do not match our records.');
+        Alert::error('Error!', 'Username/password anda salah!.');
         return redirect()->back();
 
+    }
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+        return redirect('/login');
     }
 }

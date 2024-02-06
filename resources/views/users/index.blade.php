@@ -38,6 +38,7 @@
         <!-- Main page content-->
         <div class="container-xl px-4">
             <div class="card">
+                <div class="card-header">Daftar User</div>
                 <div class="card-body">
                     <table id="myTable" style="width: 100%;">
                         <thead>
@@ -80,13 +81,13 @@
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-1 detail_data"
                                             href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             data-id="{{ $user->id_user }}"><i data-feather="eye"></i></a>
-                                        <form action="{{ route('users.destroy', ['user' => $user->id_user]) }}"
+                                        {{-- <form action="{{ route('users.destroy', ['user' => $user->id_user]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-datatable btn-icon btn-transparent-dark delete"
                                                 type="submit"><i data-feather="trash-2"></i></button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach

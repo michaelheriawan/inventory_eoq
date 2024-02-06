@@ -42,26 +42,29 @@
         <!-- Main page content-->
         <div class="container-xl px-4">
             <div class="card">
+                <div class="card-header">Stock Opname</div>
                 <div class="card-body">
                     <table id="myTable" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nama Barang</th>
+                                <th>User</th>
                                 <th>Sisa Stok</th>
                                 <th>Stok Update</th>
                                 <th>Tanggal Dibuat</th>
-                                <th>Aksi</th>
+
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>ID</th>
                                 <th>Nama Barang</th>
+                                <th>User</th>
                                 <th>Sisa Stok</th>
                                 <th>Stok Update</th>
                                 <th>Tanggal Dibuat</th>
-                                <th>Aksi</th>
+
                             </tr>
                         </tfoot>
                         <tbody>
@@ -69,23 +72,24 @@
                                 <tr>
                                     <td class="id">{{ $item->id_stock_opname }}</td>
                                     <td class="nama">{{ $item->barangs->nama }}</td>
+                                    <td>{{ $item->users->nama }}</td>
                                     <td>{{ $item->sisa_stok }}</td>
                                     <td>{{ $item->stok_update }}</td>
                                     <td>{{ $item->created_at }}</td>
-                                    <td>
+                                    {{-- <td>
                                         <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"
                                             href="{{ route('barang.edit', ['barang' => $item->id_stock_opname]) }}"
                                             id="myDiv"><i data-feather="edit"></i></a>
-                                        {{-- <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
-                                                data-feather="trash-2"></i></a> --}}
-                                        {{-- <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang_masuk]) }}"
+                                        <a class="btn btn-datatable btn-icon btn-transparent-dark delete" href="#!"><i
+                                                data-feather="trash-2"></i></a> 
+                                        <form action="{{ route('barang.destroy', ['barang' => $barang->id_barang_masuk]) }}"
                                             method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <button class="btn btn-datatable btn-icon btn-transparent-dark delete"
                                                 type="submit"><i data-feather="trash-2"></i></button>
-                                        </form> --}}
-                                    </td>
+                                        </form>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

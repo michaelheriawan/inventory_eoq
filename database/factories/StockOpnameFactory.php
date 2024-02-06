@@ -17,7 +17,11 @@ class StockOpnameFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => fake()->numberBetween(1, 5),
+            'barang_id' => fake()->numberBetween(1, 8),
+            'supplier_id' => fake()->numberBetween(1, 20),
+            'jumlah_masuk' => fake()->randomNumber(2, true),
         ];
+
     }
 }

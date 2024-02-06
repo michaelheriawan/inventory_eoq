@@ -7,7 +7,7 @@
                     <div class="row align-items-center justify-content-between">
                         <div class="col-auto mt-4">
                             <h1 class="page-header-title">
-                                <div class="page-header-icon icon-white"><i data-feather="arrow-down-circle"></i></div>
+                                <div class="page-header-icon icon-white"><i data-feather="activity"></i></div>
                                 Barang Keluar
                             </h1>
                             {{-- <div class="page-header-subtitle">A simplified page header for use with the dashboard layout
@@ -48,12 +48,14 @@
         <!-- Main page content-->
         <div class="container-xl px-4">
             <div class="card">
+                <div class="card-header">Daftar Barang Keluar</div>
                 <div class="card-body">
                     <table id="myTable" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nama Barang</th>
+                                <th>User</th>
                                 <th>Tanggal Keluar</th>
                                 <th>Jumlah</th>
                                 <th>Aksi</th>
@@ -63,6 +65,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nama Barang</th>
+                                <th>User</th>
                                 <th>Tanggal Masuk</th>
                                 <th>Jumlah</th>
                                 <th>Aksi</th>
@@ -73,6 +76,7 @@
                                 <tr>
                                     <td class="id">{{ $item->id_barang_keluar }}</td>
                                     <td class="nama">{{ $item->barangs->nama }}</td>
+                                    <td>{{ $item->users->nama }}</td>
                                     <td>{{ $item->created_at }}</td>
                                     <td>{{ $item->jumlah_keluar }}</td>
 
@@ -121,6 +125,10 @@
                             <tr>
                                 <td width="50%">Nama Barang</td>
                                 <td id="d_nama"></td>
+                            </tr>
+                            <tr>
+                                <td width="50%">User</td>
+                                <td id="d_user"></td>
                             </tr>
                             <tr>
                                 <td width="50%">Qty</td>
@@ -212,6 +220,7 @@
 
                         $('#d_kategori').text(data.kategori);
                         $('#d_nama').text(data.barang);
+                        $('#d_user').text(data.user_nama);
                         $('#d_jumlah_keluar').text(data.jumlah_keluar);
                         $('#d_jual').text(formatRupiah(data.harga_jual));
                         $('#d_total').text(formatRupiah(data.jumlah_keluar * data.harga_jual));

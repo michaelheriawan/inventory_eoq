@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('gambar')->nullable();
             $table->unsignedInteger('harga_beli');
             $table->unsignedInteger('harga_jual');
+
             $table->timestamps();
         });
     }
@@ -33,6 +34,7 @@ return new class extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('barang');
     }
 };

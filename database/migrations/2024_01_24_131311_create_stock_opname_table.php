@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id_user')->on('user');
             $table->unsignedInteger('sisa_stok');
             $table->unsignedInteger('stok_update');
-            $table->text('keterangan')->nullable();
+            // $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }

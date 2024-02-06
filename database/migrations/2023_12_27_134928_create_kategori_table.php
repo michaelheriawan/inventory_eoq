@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('kategori', function (Blueprint $table) {
             $table->unsignedBigInteger('id_kategori')->autoIncrement();
             $table->string('nama');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,9 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('kategoris', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
 
         Schema::dropIfExists('kategori');
     }

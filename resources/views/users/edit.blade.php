@@ -104,10 +104,10 @@
                                     <select class="form-select {{ $errors->has('level') ? 'is-invalid' : '' }}"
                                         aria-label="Default select example" name="level">
                                         <option disabled value="">Pilih level:</option>
-                                        <option {{ $detail_user->password == 'admin' ? 'selected' : '' }} value="admin">
+                                        <option {{ $detail_user->level == 'admin' ? 'selected' : '' }} value="admin">
                                             Admin</option>
-                                        <option {{ $detail_user->password == 'pemilik' ? 'selected' : '' }}
-                                            value="pemilik">Pemilik</option>
+                                        <option {{ $detail_user->level == 'pemilik' ? 'selected' : '' }} value="pemilik">
+                                            Pemilik</option>
                                     </select>
                                     @error('level')
                                         <div id="validationServer03Feedback" class="invalid-feedback"

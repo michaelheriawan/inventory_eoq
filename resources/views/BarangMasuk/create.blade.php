@@ -112,7 +112,7 @@
                                         placeholder="Ketik jumlah Barang" value="" min="0" readonly />
 
                                 </div>
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label class="small mb-1">Keterangan</label>
                                     <textarea class="lh-base form-control" type="text" name="keterangan" placeholder="keterangan Barang Masuk"
                                         rows="4"></textarea>
@@ -122,7 +122,7 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
-                                </div>
+                                </div> --}}
 
                                 <!-- Submit button-->
                                 <button class="btn btn-primary" type="submit">Simpan</button>
