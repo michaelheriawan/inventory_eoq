@@ -15,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->unsignedBigInteger('id_user')->autoIncrement();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('no_tlp');
+            $table->string('nama', 100);
+            $table->string('email', 50)->unique();
+            $table->string('no_tlp', 15);
             $table->text('alamat');
-            $table->string('password');
-            $table->string('level');
+            $table->text('password');
+            $table->string('level', 10);
             $table->text('gambar')->nullable();
-
             $table->timestamps();
         });
     }

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_eoq_barang')->autoIncrement();
             $table->unsignedBigInteger('barang_id');
             $table->foreign('barang_id')->references('id_barang')->on('barang');
-            $table->string('bulan');
+            $table->string('bulan', 15);
+            $table->string('tahun', 4);
             $table->unsignedInteger('jumlah_permintaan');
             $table->unsignedInteger('harga_barang');
             $table->unsignedInteger('biaya_pesan');

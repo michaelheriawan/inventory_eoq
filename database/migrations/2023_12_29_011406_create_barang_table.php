@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_barang')->autoIncrement();
             $table->unsignedBigInteger('kategori');
             $table->foreign('kategori')->references('id_kategori')->on('kategori');
-            $table->string('nama');
+            $table->string('nama', 50);
             $table->unsignedInteger('stok');
             $table->text('gambar')->nullable();
             $table->unsignedInteger('harga_beli');

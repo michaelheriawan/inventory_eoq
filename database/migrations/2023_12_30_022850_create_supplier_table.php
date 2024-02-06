@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('supplier', function (Blueprint $table) {
             $table->unsignedBigInteger('id_supplier')->autoIncrement();
-            $table->string('nama');
-            $table->string('email');
-            $table->string('no_tlp');
+            $table->string('nama', 100);
+            $table->string('email', 50);
+            $table->string('no_tlp', 15);
             $table->text('alamat');
-            $table->text('nama_usaha');
+            $table->string('nama_usaha', 50);
             $table->timestamps();
         });
     }

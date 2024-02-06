@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('kategori', function (Blueprint $table) {
             $table->unsignedBigInteger('id_kategori')->autoIncrement();
-            $table->string('nama');
+            $table->string('nama', 100);
             $table->timestamps();
         });
     }
