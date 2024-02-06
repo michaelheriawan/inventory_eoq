@@ -19,4 +19,15 @@ class HomeController extends Controller
 
         return view('welcome', ['Barang' => Barang::all()->count(), 'User' => User::all()->count(), 'BarangMasuk' => BarangMasuk::all()->count(), 'BarangKeluar' => BarangKeluar::all()->count()]);
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(User $user)
+    {
+        return view('profile', ['User' => $user]);
+
+    }
 }

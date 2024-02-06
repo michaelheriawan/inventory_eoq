@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
  */
 Route::get('/', [HomeController::class, 'index'])->middleware(['isLogin']);
+Route::get('profil/{user}', [HomeController::class, 'show'])->name('home.profil')->middleware(['isLogin']);
 
 Route::middleware(['isLogin', 'isAdmin'])->group(function () {
 

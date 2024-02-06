@@ -29,7 +29,7 @@
                                 <!-- Basic login form-->
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header justify-content-center">
-                                        <h3 class="fw-light my-4">Toko Indrawan Elektronik</h3>
+                                        <h3 class="fw-bolder my-4 text-center">Toko Indrawan Elektronik</h3>
                                     </div>
                                     <div class="card-body">
                                         <!-- Login form-->
@@ -47,7 +47,7 @@
                                                 <input class="form-control" id="inputPassword" type="password"
                                                     placeholder="Enter password" name="password" />
                                             </div>
-                                            <!-- Form Group (remember password checkbox)-->
+                                            {{-- <!-- Form Group (remember password checkbox)-->
                                             <div class="mb-3">
                                                 <div class="form-check">
                                                     <input class="form-check-input" id="rememberPasswordCheck"
@@ -55,7 +55,7 @@
                                                     <label class="form-check-label" for="rememberPasswordCheck">Remember
                                                         password</label>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <!-- Form Group (login box)-->
                                             <div class="d-flex flex-row-reverse mt-4 mb-0">
 
