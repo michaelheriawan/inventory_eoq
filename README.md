@@ -1,1 +1,1 @@
-# program_skripsi
+# Inventory System With EOQ using laravel
